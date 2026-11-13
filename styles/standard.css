@@ -9,7 +9,7 @@ html {
 }
 
 a {
-    list-style-type: none;
+    text-decoration: none;
 }
 
 ul {
