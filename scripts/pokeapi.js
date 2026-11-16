@@ -1,10 +1,10 @@
-function initialize() {
-    loadPokemonFromPokeApiAsync(0, 20);
-}
+const IMAGES_PATH = "C://"
+let pokemonTotalCount = 0;
 
 async function loadPokemonFromPokeApiAsync(offset, limit) {
     const pokemonResponseJson = await tryGetPokemonResponseJsonAsync(offset, limit);
     const pokemonUrls = tryGetPokemonResultUrls(pokemonResponseJson);
+
     if (pokemonUrls.length > 0) {
         const pokemonResponses = await tryGetPokemonResponsesAsync(pokemonUrls);
         const pokemonJsons = await tryGetPokemonJsonsAsync(pokemonResponses);
@@ -17,6 +17,7 @@ async function tryGetPokemonResponseJsonAsync(offset, limit) {
     try {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`);
         const responseJson = await response.json();
+        pokemonTotalCount = responseJson.count;
         return responseJson;
     } catch (error) {
         console.log(error);
@@ -29,7 +30,7 @@ function tryGetPokemonResultUrls(pokemonResponseJson) {
         const pokemonUrls = [];
 
         pokemonResponseJson["results"].forEach(pokemonResult => {
-            const pokemonInLocalStorage = localStorage.key(pokemonResult.name);
+            const pokemonInLocalStorage = getPokemonFromLocalStorage(pokemonResult.name);
             if (pokemonInLocalStorage == null) {
                 pokemonUrls.push(pokemonResult.url);
             }
@@ -62,10 +63,4 @@ async function tryGetPokemonJsonsAsync(pokemonResponses) {
         console.log(error);
         return [];
     }
-}
-
-function savePokemonsInLocalStorage(pokemonJsons) {
-    pokemonJsons.forEach(pokemonJson => {
-        localStorage.setItem(pokemonJson.name, JSON.stringify(pokemonJson));
-    });
 }

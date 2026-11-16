@@ -93,6 +93,18 @@ a {
     cursor: pointer;
 }
 
+.cards_section {
+    height: 100%;
+    width: 100%;
+
+    padding: 2em max(50px, var(--content-limitation-calculation));
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
 .page_footer {
     width: 100%;
 
