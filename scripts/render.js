@@ -1,13 +1,25 @@
-function renderPokemonCards() {
+let currentlyVisiblePokemon = [];
+
+function renderPokemonCardsFromCache() {
+    const allPokemonInCashe = getAllPokemonFromCashe();
+    renderPokemonCards(allPokemonInCashe);
+}
+
+function renderPokemonCards(pokemonArray) {
     const pokemonCardsSection = document.getElementById("pokemonCardsSection");
-    const pokemonInCashe = getAllPokemonFromCashe().toSorted((p1, p2) => p1.id - p2.id);
     let pokemonCardTemplates = "";
 
-    pokemonInCashe.forEach(pokemon => {
-        const pokemonTypeTemplates = getPokemonTypeTemplates(pokemon.types);
-        pokemonCardTemplates += getPokemonCardTemplate(pokemon.sprites.front_default,
-            getFormattedPokedexNumber(pokemon.id), pokemon.name, pokemonTypeTemplates);
-    });
+    currentlyVisiblePokemon = pokemonArray.toSorted((p1, p2) => p1.id - p2.id);
+
+    if (currentlyVisiblePokemon.length > 0) {
+        currentlyVisiblePokemon.forEach(pokemon => {
+            const pokemonTypeTemplates = getPokemonTypeTemplates(pokemon.types);
+            pokemonCardTemplates += getPokemonCardTemplate(pokemon.sprites.front_default,
+                getFormattedPokedexNumber(pokemon.id), pokemon.name, pokemonTypeTemplates);
+        });
+    } else {
+        pokemonCardTemplates = getEmptyFilterResultsTemplate();
+    }
 
     pokemonCardsSection.innerHTML = "";
     pokemonCardsSection.innerHTML = pokemonCardTemplates;

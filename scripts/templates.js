@@ -18,3 +18,12 @@ function getPokemonTypeTemplate(pokemonType, pokemonTypeDisplayName) {
         <p class="pokemon_type type_${pokemonType}">${pokemonTypeDisplayName}</p>
     `;
 }
+
+function getEmptyFilterResultsTemplate() {
+    return `
+        <div class="empty_filter_results">
+            <img src="../assets/img/prof_oak.png">
+            <h2>Hey! Wait! There are no Pokémon in the tall grass...</h2>
+        <div>
+    `;
+}

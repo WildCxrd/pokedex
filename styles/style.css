@@ -94,15 +94,26 @@ a {
 }
 
 .cards_section {
-    height: 100%;
     width: 100%;
 
     padding: 2em max(50px, var(--content-limitation-calculation));
 
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
+    flex: 1;
     gap: 2em;
+}
+
+.empty_filter_results {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.empty_filter_results>img {
+    height: 250px;
 }
 
 .page_footer {

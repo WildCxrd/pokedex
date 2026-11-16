@@ -20,6 +20,7 @@
     <script src="scripts/templates.js"></script>
     <script src="scripts/cashe.js"></script>
     <script src="scripts/render.js"></script>
+    <script src="scripts/filter.js"></script>
 </head>
 
 <body onload="initialize()">
@@ -30,9 +31,9 @@
         </div>
 
         <div class="filter_wrapper">
-            <input type="text" placeholder="Search for a Pokémon...">
+            <input id="filterInput" type="text" placeholder="Search for a Pokémon..." onkeypress="filterPokemonCardsOnEnter(event)">
             <button id="filterButton">
-                <img src="assets/icons/magnifying-glass.svg" alt="A magnifying glass.">
+                <img src="assets/icons/magnifying-glass.svg" alt="A magnifying glass." onclick="filterPokemonCards()">
             </button>
         </div>
     </header>

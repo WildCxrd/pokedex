@@ -1,17 +1,17 @@
-const POKEMON_CASHE = [];
+const POKEMON_CACHE = [];
 
 function savePokemonsInCashe(pokemonJsons) {
     pokemonJsons.forEach(pokemonJson => {
         if (getPokemonFromCashe(pokemonJson.id) == undefined) {
-            POKEMON_CASHE.push(pokemonJson);
+            POKEMON_CACHE.push(pokemonJson);
         }
     });
 }
 
 function getAllPokemonFromCashe() {
-    return POKEMON_CASHE;
+    return POKEMON_CACHE;
 }
 
 function getPokemonFromCashe(pokemonId) {
-    return POKEMON_CASHE.find(p => p.id == pokemonId);
+    return POKEMON_CACHE.find(p => p.id == pokemonId);
 }
