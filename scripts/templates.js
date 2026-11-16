@@ -22,7 +22,7 @@ function getPokemonTypeTemplate(pokemonType, pokemonTypeDisplayName) {
 function getEmptyFilterResultsTemplate() {
     return `
         <div class="empty_filter_results">
-            <img src="../assets/img/prof_oak.png">
+            <img src="../assets/img/prof_oak.png" alt="Prof. Oak holding a book.">
             <h2>Hey! Wait! There are no Pokémon in the tall grass...</h2>
         <div>
     `;
