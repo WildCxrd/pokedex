@@ -102,7 +102,6 @@ a {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    flex: 1;
     gap: 2em;
 }
 
