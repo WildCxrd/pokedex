@@ -1,9 +1,9 @@
 function renderPokemonCards() {
     const pokemonCardsSection = document.getElementById("pokemonCardsSection");
-    const pokemonInLocalStorage = getAllPokemonFromLocalStorage().toSorted((p1, p2) => p1.id - p2.id);
+    const pokemonInCashe = getAllPokemonFromCashe().toSorted((p1, p2) => p1.id - p2.id);
     let pokemonCardTemplates = "";
 
-    pokemonInLocalStorage.forEach(pokemon => {
+    pokemonInCashe.forEach(pokemon => {
         const pokemonTypeTemplates = getPokemonTypeTemplates(pokemon.types);
         pokemonCardTemplates += getPokemonCardTemplate(pokemon.sprites.front_default,
             getFormattedPokedexNumber(pokemon.id), pokemon.name, pokemonTypeTemplates);

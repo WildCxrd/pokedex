@@ -9,7 +9,7 @@ async function loadPokemonFromPokeApiAsync(offset, limit) {
         const pokemonResponses = await tryGetPokemonResponsesAsync(pokemonUrls);
         const pokemonJsons = await tryGetPokemonJsonsAsync(pokemonResponses);
 
-        savePokemonsInLocalStorage(pokemonJsons);
+        savePokemonsInCashe(pokemonJsons);
     }
 }
 
@@ -30,7 +30,7 @@ function tryGetPokemonResultUrls(pokemonResponseJson) {
         const pokemonUrls = [];
 
         pokemonResponseJson["results"].forEach(pokemonResult => {
-            const pokemonInLocalStorage = getPokemonFromLocalStorage(pokemonResult.name);
+            const pokemonInLocalStorage = getPokemonFromCashe(pokemonResult.name);
             if (pokemonInLocalStorage == null) {
                 pokemonUrls.push(pokemonResult.url);
             }

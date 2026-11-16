@@ -1,4 +1,4 @@
 async function initialize() {
-    await loadPokemonFromPokeApiAsync(0, 20);
+    await loadPokemonFromPokeApiAsync(0, 40);
     renderPokemonCards();
 }
