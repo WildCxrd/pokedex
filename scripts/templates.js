@@ -1,6 +1,6 @@
-function getPokemonCardTemplate(imgSrc, pokedexNumber, pokemonName, pokemonTypesTemplate) {
+function getPokemonCardTemplate(imgSrc, pokemonId, pokedexNumber, pokemonName, pokemonTypesTemplate) {
     return `
-        <article class="pokemon_card">
+        <article class="pokemon_card" onclick="showPokemonDetailsDialogAsync(${pokemonId})">
             <div class="pokemon_image_wrapper">
                 <img id="pokemonImage" src="${imgSrc}" alt="The pokemon ${pokemonName}">
             </div>
@@ -25,5 +25,13 @@ function getEmptyFilterResultsTemplate() {
             <img src="../assets/img/prof_oak.png" alt="Prof. Oak holding a book.">
             <h2>Hey! Wait! There are no Pokémon in the tall grass...</h2>
         <div>
+    `;
+}
+
+function getPokemonGenderTemplate(genderId, genderName, imgSrc, imgAlt) {
+    return `
+        <button id="${genderName}GenderButton" class="gender_button" onclick="changeGender(${genderId})">
+            <img src="${imgSrc}" alt="${imgAlt}">
+        </button>
     `;
 }

@@ -15,7 +15,8 @@ function renderPokemonCards(pokemonArray) {
         currentlyVisiblePokemon.forEach(pokemon => {
             const pokemonTypeTemplates = getPokemonTypeTemplates(pokemon.types);
             pokemonCardTemplates += getPokemonCardTemplate(pokemon.sprites.front_default,
-                getFormattedPokedexNumber(pokemon.id), pokemon.name, pokemonTypeTemplates);
+                pokemon.id, getFormattedPokedexNumber(pokemon.id), 
+                pokemon.name, pokemonTypeTemplates);
         });
     } else {
         pokemonCardTemplates = getEmptyFilterResultsTemplate();
@@ -25,17 +26,3 @@ function renderPokemonCards(pokemonArray) {
     pokemonCardsSection.innerHTML = pokemonCardTemplates;
 }
 
-function getPokemonTypeTemplates(pokemonTypes) {
-    let pokemonTypeTemplates = "";
-
-    pokemonTypes.forEach(pokemonType => {
-        pokemonTypeTemplates += getPokemonTypeTemplate(pokemonType.type.name, pokemonType.type.name);
-    });
-
-    return pokemonTypeTemplates;
-}
-
-function getFormattedPokedexNumber(pokedexNumber) {
-    const pokedexNumberMaxLength = pokemonTotalCount.toString().length;
-    return pokedexNumber.toString().padStart(pokedexNumberMaxLength, 0);
-}

@@ -1,7 +1,13 @@
-const IMAGES_PATH = "C://"
+const pokeApiBaseUrl = "https://pokeapi.co/api/v2";
+const pokemonBaseUrl = `${pokeApiBaseUrl}/pokemon/`;
+const pokemonSpeciesBaseUrl = `${pokeApiBaseUrl}/pokemon-species/`;
+const pokemonGenderBaseUrl = `${pokeApiBaseUrl}/gender/`;
+
 let pokemonTotalCount = 0;
 
-async function loadPokemonFromPokeApiAsync(offset, limit) {
+//#region API calls
+
+async function savePokemonsInCacheAsync(offset, limit) {
     const pokemonResponseJson = await tryGetPokemonResponseJsonAsync(offset, limit);
     const pokemonUrls = tryGetPokemonResultUrls(pokemonResponseJson);
 
@@ -13,17 +19,79 @@ async function loadPokemonFromPokeApiAsync(offset, limit) {
     }
 }
 
+async function saveGenderDataInCachesAsync() {
+    const loadGenderPromises = [];
+    
+    loadGenderPromises.push(tryGetPokemonGenders(1));
+    loadGenderPromises.push(tryGetPokemonGenders(2));
+    loadGenderPromises.push(tryGetPokemonGenders(3));
+    const genderPromiseResults = await Promise.all(loadGenderPromises);
+
+    POKEMON_GENDERS_FEMALE = genderPromiseResults[0];
+    POKEMON_GENDERS_MALE = genderPromiseResults[1];
+    POKEMON_GENDERS_GENDERLESS = genderPromiseResults[2];
+}
+
 async function tryGetPokemonResponseJsonAsync(offset, limit) {
     try {
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`);
-        const responseJson = await response.json();
+        const url = `${pokemonBaseUrl}?offset=${offset}&limit=${limit}`;
+        const responseJson = await tryGetResponseJson(url);
         pokemonTotalCount = responseJson.count;
         return responseJson;
     } catch (error) {
         console.log(error);
-        return "";
+        return undefined;
     }
 }
+
+async function tryGetPokemonResponsesAsync(pokemonUrls) {
+    try {
+        const pokemonRequests = pokemonUrls.map((url) => fetch(url));
+        const pokemonResponses = await Promise.all(pokemonRequests);
+        return pokemonResponses;
+    } catch (error) {
+        console.log(error);
+        return undefined;
+    }
+}
+
+async function tryGetPokemonFlavorTextAsync(pokemonId) {
+    try {
+        const url = `${pokemonSpeciesBaseUrl}/${pokemonId}`;
+        const responseJson = await tryGetResponseJson(url);
+
+        return responseJson.flavor_text_entries[0].flavor_text;
+    } catch (error) {
+        console.log(error);
+        return undefined;
+    }
+}
+
+async function tryGetPokemonGenders(genderId) {
+    try {
+        const url = `${pokemonGenderBaseUrl}/${genderId}`;
+        const gendersResponseJson = await tryGetResponseJson(url);
+        return gendersResponseJson;
+    } catch (error) {
+        console.log(error);
+        return undefined;
+    }
+}
+
+async function tryGetResponseJson(url) {
+    try {
+        const response = await fetch(url);
+        const json = await response.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+        return undefined;
+    }
+}
+
+//#endregion
+
+//#region JSON
 
 function tryGetPokemonResultUrls(pokemonResponseJson) {
     try {
@@ -39,18 +107,7 @@ function tryGetPokemonResultUrls(pokemonResponseJson) {
         return pokemonUrls;
     } catch (error) {
         console.log(error);
-        return [];
-    }
-}
-
-async function tryGetPokemonResponsesAsync(pokemonUrls) {
-    try {
-        const pokemonRequests = pokemonUrls.map((url) => fetch(url));
-        const pokemonResponses = await Promise.all(pokemonRequests);
-        return pokemonResponses;
-    } catch (error) {
-        console.log(error);
-        return [];
+        return undefined;
     }
 }
 
@@ -61,6 +118,8 @@ async function tryGetPokemonJsonsAsync(pokemonResponses) {
         return pokemonJsons;
     } catch (error) {
         console.log(error);
-        return [];
+        return undefined;
     }
 }
+
+//#endregion

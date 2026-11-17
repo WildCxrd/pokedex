@@ -1,0 +1,114 @@
+#detailsPokemonName {
+    text-transform: capitalize;
+}
+
+#detailsPokemonTypesWrapper {
+    margin-top: 1em;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#pokemonFlavorText {
+    background-color: rgb(238, 230, 230);
+
+    padding: 20px;
+
+    border-radius: var(--detail-card-border-radius);
+}
+
+#pokemonGenderWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.pokemon_details_dialog {
+    max-width: 400px;
+
+    background-color: white;
+
+    padding: 20px;
+
+    border-radius: var(--detail-card-border-radius);
+
+    margin: auto;
+
+    display: none;
+}
+
+.pokemon_details_dialog[open] {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.details_dialog_pokemon_image_wrapper {
+    height: 200px;
+
+    border-radius: var(--detail-card-border-radius);
+
+    outline: 1px solid black;
+
+    display: flex;
+    justify-content: center;
+}
+
+.base_infos_wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+
+.pokemon_details_wrapper {
+    max-height: 200px;
+
+    background-color: rgb(48, 167, 215);
+
+    padding: 20px;
+
+    border-radius: var(--detail-card-border-radius);
+
+    overflow: hidden;
+    flex-wrap: wrap;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.pokemon_details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pokemon_details_headline {
+    color: white;
+    font-weight: bold;
+}
+
+.gender_button {
+    all: unset;
+
+    height: 30px;
+
+    background-color: rgb(238, 230, 230);
+
+    padding: 5px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+.gender_button:hover,
+.gender_button:focus-visible {
+    outline: 1px solid black;
+}
+
+.gender_button>img {
+    height: 100%;
+}

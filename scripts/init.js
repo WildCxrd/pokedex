@@ -1,4 +1,5 @@
 async function initialize() {
-    await loadPokemonFromPokeApiAsync(0, 40);
+    await saveGenderDataInCachesAsync();
+    await savePokemonsInCacheAsync(0, 40);
     renderPokemonCardsFromCache();
 }
