@@ -44,10 +44,12 @@ function getPokemonAbilityTemplate(abilityName, abilityEffectText) {
                 <img src="../assets/icons/question_mark.png" alt="A question mark.">
             </button>
             <div id="abilityDetailsOverlay_${abilityName}" class="ability_details_overlay ability_${abilityName}">
-                <button class="ability_details_overlay_close_button" onclick="closeAbilityDetailsOverlay('${abilityName}')">
-                    <img src="../assets/icons/close.svg" alt="A cross.">
-                </button>
-                <h3>${abilityName}</h3>
+                <header class="ability_details_overlay_header">
+                    <h3>${abilityName}</h3>
+                    <button class="ability_details_overlay_close_button" onclick="closeAbilityDetailsOverlay('${abilityName}')">
+                        <img src="../assets/icons/close.svg" alt="A cross.">
+                    </button>
+                </header>
                 <p>${abilityEffectText}</p>
             </div>
         </div>

@@ -25,6 +25,12 @@
     gap: 5px;
 }
 
+#pokemonAbilitiesWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
 .pokemon_details_dialog {
     max-width: 400px;
 
@@ -77,7 +83,7 @@
     position: relative;
 }
 
-.pokemon_details_wrapper_column{
+.pokemon_details_wrapper_column {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -112,6 +118,8 @@
     display: flex;
     align-items: center;
     gap: 10px;
+
+    overflow: auto;
 }
 
 .pokemon_ability {
@@ -121,11 +129,11 @@
 .question_mark_button {
     all: unset;
 
-    height: 15px;
+    height: 16px;
 
     background-color: black;
 
-    padding: 2px;
+    padding: 4px;
 
     border-radius: 50%;
 
@@ -165,7 +173,13 @@
     z-index: 1;
 }
 
-.ability_details_overlay>h3 {
+.ability_details_overlay_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ability_details_overlay_header>h3 {
     text-transform: capitalize;
 }
 
@@ -176,8 +190,8 @@
 .ability_details_overlay_close_button {
     all: unset;
 
-    height: 20px;
-    width: 20px;
+    height: 15px;
+    width: 15px;
 
     background-color: black;
 
