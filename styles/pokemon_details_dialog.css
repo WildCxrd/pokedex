@@ -62,8 +62,6 @@
 }
 
 .pokemon_details_wrapper {
-    max-height: 200px;
-
     background-color: rgb(48, 167, 215);
 
     padding: 20px;
@@ -74,16 +72,20 @@
     flex-wrap: wrap;
 
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    justify-content: space-around;
 
     position: relative;
+}
+
+.pokemon_details_wrapper_column{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .pokemon_details {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     gap: 10px;
 }
@@ -165,6 +167,10 @@
 
 .ability_details_overlay>h3 {
     text-transform: capitalize;
+}
+
+.ability_details_overlay>p {
+    overflow: auto;
 }
 
 .ability_details_overlay_close_button {
