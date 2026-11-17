@@ -8,6 +8,18 @@ function getPokemonTypeTemplates(pokemonTypes) {
     return pokemonTypeTemplates;
 }
 
+async function getPokemonAbilitiesTemplatesAsync(pokemonAbilities) {
+    let abilitiesTemplates = "";
+
+    for (let index = 0; index < pokemonAbilities.length; index++) {
+        const ability = pokemonAbilities[index];
+        const abilityEffectText = await getPokemonAbilityEffectTextAsync(ability);
+        abilitiesTemplates += getPokemonAbilityTemplate(ability.ability.name, abilityEffectText);
+    }
+
+    return abilitiesTemplates;
+}
+
 function getPokemonGenderTemplates(pokemonGenders) {
     let genderTemplates = "";
 
@@ -66,6 +78,15 @@ function getPokemonGender(pokemonSpeciesName, genderCache) {
         return { id: genderCache.id, name: genderCache.name };
     } else {
         return null;
+    }
+}
+
+async function getPokemonAbilityEffectTextAsync(ability) {
+    if (ability.effect_text != undefined) {
+        return ability.effect_text;
+    } else {
+        ability.effect_text = await tryGetAbilityEffectTextAsync(ability.ability.url);
+        return ability.effect_text;
     }
 }
 

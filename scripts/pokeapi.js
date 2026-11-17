@@ -21,7 +21,7 @@ async function savePokemonsInCacheAsync(offset, limit) {
 
 async function saveGenderDataInCachesAsync() {
     const loadGenderPromises = [];
-    
+
     loadGenderPromises.push(tryGetPokemonGenders(1));
     loadGenderPromises.push(tryGetPokemonGenders(2));
     loadGenderPromises.push(tryGetPokemonGenders(3));
@@ -75,6 +75,26 @@ async function tryGetPokemonGenders(genderId) {
     } catch (error) {
         console.log(error);
         return undefined;
+    }
+}
+
+async function tryGetAbilityEffectTextAsync(abilityUrl) {
+    try {
+        const abilityResponseJson = await tryGetResponseJson(abilityUrl);
+        let effectText = "";
+
+        for (const x in abilityResponseJson.effect_entries) {
+            const effectEntry = abilityResponseJson.effect_entries[x];
+            if (effectEntry.language.name == "en") {
+                effectText = effectEntry.effect;
+                break;
+            }
+        }
+
+        return effectText;
+    } catch (error) {
+        console.log(error);
+        return "";
     }
 }
 

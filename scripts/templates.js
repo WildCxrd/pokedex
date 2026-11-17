@@ -30,8 +30,26 @@ function getEmptyFilterResultsTemplate() {
 
 function getPokemonGenderTemplate(genderId, genderName, imgSrc, imgAlt) {
     return `
-        <button id="${genderName}GenderButton" class="gender_button" onclick="changeGender(${genderId})">
+        <button id="${genderName}GenderButton" class="gender_button circle_button" onclick="changeGender(${genderId})">
             <img src="${imgSrc}" alt="${imgAlt}">
         </button>
+    `;
+}
+
+function getPokemonAbilityTemplate(abilityName, abilityEffectText) {
+    return `
+        <div class="pokemon_ability_wrapper">
+            <p class="pokemon_ability">${abilityName}</p>
+            <button class="question_mark_button circle_button" onclick="showAbilityDetailsOverlay('${abilityName}')">
+                <img src="../assets/icons/question_mark.png" alt="A question mark.">
+            </button>
+            <div id="abilityDetailsOverlay_${abilityName}" class="ability_details_overlay ability_${abilityName}">
+                <button class="ability_details_overlay_close_button" onclick="closeAbilityDetailsOverlay('${abilityName}')">
+                    <img src="../assets/icons/close.svg" alt="A cross.">
+                </button>
+                <h3>${abilityName}</h3>
+                <p>${abilityEffectText}</p>
+            </div>
+        </div>
     `;
 }

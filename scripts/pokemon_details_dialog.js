@@ -8,10 +8,12 @@ async function showPokemonDetailsDialogAsync(pokemonId) {
     const pokemonGenders = getPokemonGenders(pokemon);
     const pokemonGenderTemplates = getPokemonGenderTemplates(pokemonGenders);
 
+    const pokemonAbilitiesTemplates = await getPokemonAbilitiesTemplatesAsync(pokemon.abilities);
+
     setPokemonDetailsTexts(formattedPokedexNumber, pokemon.name, formattedPokemonFlavorText);
     setPokemonDetailsImages(pokemon);
     setPokemonDetailsTypes(pokemon);
-    setPokemonDetails(pokemon, pokemonGenderTemplates);
+    setPokemonDetails(pokemon, pokemonGenderTemplates, pokemonAbilitiesTemplates);
 
     pokemonDetailsDialog.showModal();
 }
@@ -41,17 +43,24 @@ function setPokemonDetailsTypes(pokemon) {
     detailsPokemonTypesWrapper.innerHTML = pokemonTypesTemplates;
 }
 
-function setPokemonDetails(pokemon, pokemonGenderTemplates) {
+function setPokemonDetails(pokemon, pokemonGenderTemplates, pokemonAbilitiesTemplates) {
     const pokemonHeight = document.getElementById("pokemonHeight");
     const pokemonWeight = document.getElementById("pokemonWeight");
     const pokemonGenderWrapper = document.getElementById("pokemonGenderWrapper");
-    const pokemonAbilities = document.getElementById("pokemonAbilities");
+    const pokemonAbilitiesWrapper = document.getElementById("pokemonAbilitiesWrapper");
 
     pokemonHeight.innerHTML = getMetricHeight(pokemon.height);
     pokemonWeight.innerHTML = getMetricWeight(pokemon.weight);
     pokemonGenderWrapper.innerHTML = pokemonGenderTemplates;
+    pokemonAbilitiesWrapper.innerHTML = pokemonAbilitiesTemplates;
 }
 
-function changeGender(genderId){
-    // TODO
+function showAbilityDetailsOverlay(abilityName) {
+    const abilityDetailsOverlay = document.getElementById(`abilityDetailsOverlay_${abilityName}`);
+    abilityDetailsOverlay.classList.add("open");
+}
+
+function closeAbilityDetailsOverlay(abilityName) {
+    const abilityDetailsOverlay = document.getElementById(`abilityDetailsOverlay_${abilityName}`);
+    abilityDetailsOverlay.classList.remove("open");
 }

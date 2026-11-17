@@ -130,3 +130,21 @@ a {
     justify-content: space-between;
     align-items: center;
 }
+
+.circle_button {
+    all: unset;
+
+    height: 30px;
+    width: 30px;
+
+    padding: 5px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+.circle_button:hover,
+.circle_button:focus-visible {
+    outline: 1px solid black;
+}

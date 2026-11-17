@@ -56,7 +56,7 @@
     justify-content: center;
 }
 
-.base_infos_wrapper{
+.base_infos_wrapper {
     display: flex;
     justify-content: space-between;
 }
@@ -76,6 +76,8 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    position: relative;
 }
 
 .pokemon_details {
@@ -83,6 +85,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
 }
 
 .pokemon_details_headline {
@@ -91,17 +94,7 @@
 }
 
 .gender_button {
-    all: unset;
-
-    height: 30px;
-
     background-color: rgb(238, 230, 230);
-
-    padding: 5px;
-
-    border-radius: 50%;
-
-    cursor: pointer;
 }
 
 .gender_button:hover,
@@ -111,4 +104,82 @@
 
 .gender_button>img {
     height: 100%;
+}
+
+.pokemon_ability_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pokemon_ability {
+    text-transform: capitalize;
+}
+
+.question_mark_button {
+    all: unset;
+
+    height: 15px;
+
+    background-color: black;
+
+    padding: 2px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+.question_mark_button>img {
+    height: 100%;
+}
+
+.ability_details_overlay {
+    height: 100%;
+    width: 100%;
+
+    color: white;
+    background-color: rgb(49, 49, 49);
+
+    opacity: 0;
+
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    z-index: -1;
+
+    transition: all 255ms ease-in-out;
+}
+
+.ability_details_overlay.open {
+    opacity: 1;
+    z-index: 1;
+}
+
+.ability_details_overlay>h3 {
+    text-transform: capitalize;
+}
+
+.ability_details_overlay_close_button {
+    all: unset;
+
+    height: 20px;
+    width: 20px;
+
+    background-color: black;
+
+    padding: 5px;
+
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-self: flex-end;
 }
