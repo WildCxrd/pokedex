@@ -12,18 +12,13 @@ async function renderPokemonCardsAsync(pokemonArray) {
     currentlyVisiblePokemon = pokemonArray.toSorted((p1, p2) => p1.id - p2.id);
 
     if (currentlyVisiblePokemon.length > 0) {
-        const imageDownloads = [];
+        await preloadPokemonCardsImages(currentlyVisiblePokemon);
 
         for (const pokemon of currentlyVisiblePokemon) {
-            const imageUrl = pokemon.sprites.other["official-artwork"].front_default;
-            imageDownloads.push(tryPreLoadImageAsync(imageUrl));
-
             const pokemonTypeTemplates = getPokemonTypeTemplates(pokemon.types);
-            pokemonCardTemplates += getPokemonCardTemplate(imageUrl, pokemon.id, getFormattedPokedexNumber(pokemon.id),
-                pokemon.name, pokemonTypeTemplates);
+            pokemonCardTemplates += getPokemonCardTemplate(pokemon.sprites.other["official-artwork"].front_default,
+                pokemon.id, getFormattedPokedexNumber(pokemon.id), pokemon.name, pokemonTypeTemplates);
         }
-
-        await Promise.all(imageDownloads);
 
     } else {
         pokemonCardTemplates = getEmptyFilterResultsTemplate();
@@ -31,4 +26,15 @@ async function renderPokemonCardsAsync(pokemonArray) {
 
     pokemonCardsSection.innerHTML = "";
     pokemonCardsSection.innerHTML = pokemonCardTemplates;
+}
+
+async function preloadPokemonCardsImages(pokemonArray) {
+    const imageDownloads = [];
+
+    for (const pokemon of pokemonArray) {
+        const officialArtworkFrontDefaultUrl = pokemon.sprites.other["official-artwork"].front_default;
+        imageDownloads.push(tryPreLoadImageAsync(officialArtworkFrontDefaultUrl));
+    }
+
+    await Promise.all(imageDownloads);
 }
