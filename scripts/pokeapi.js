@@ -109,6 +109,19 @@ async function tryGetResponseJson(url) {
     }
 }
 
+async function tryPreLoadImageAsync(imageUrl) {
+    try {
+        await new Promise((resolve, reject) => {
+            const image = new Image();
+            image.onload = resolve;
+            image.onerror = reject;
+            image.src = imageUrl;
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 //#endregion
 
 //#region JSON

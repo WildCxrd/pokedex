@@ -1,5 +1,7 @@
-async function initialize() {
-    await saveGenderDataInCachesAsync();
-    await savePokemonsInCacheAsync(0, 40);
+async function initializeAsync() {
+    let dataDownloads = [];
+    dataDownloads.push(saveGenderDataInCachesAsync());
+    dataDownloads.push(savePokemonsInCacheAsync(0, 20));
+    await Promise.all(dataDownloads);
     renderPokemonCardsFromCache();
 }
