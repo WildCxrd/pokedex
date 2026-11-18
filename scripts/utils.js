@@ -123,3 +123,13 @@ function cleanText(text) {
         .replace("\f", " ");
     return cleanedText;
 }
+
+async function preloadImagesAsync(...imageUrls) {
+    const imageDownloads = [];
+
+    for (const imageUrl of imageUrls) {
+        imageDownloads.push(tryPreLoadImageAsync(imageUrl));
+    }
+
+    await Promise.all(imageDownloads);
+}
