@@ -10,6 +10,7 @@ let pokemonTotalCount = 0;
 async function tryGetPokemonAsync(offset, limit) {
     const url = `${pokemonBaseUrl}?offset=${offset}&limit=${limit}`;
     const pokemonResponseJson = await tryGetResponseJson(url);
+    pokemonTotalCount = pokemonResponseJson.count;
     const pokemonUrls = tryGetPokemonResultUrls(pokemonResponseJson);
 
     if (pokemonUrls.length > 0) {
