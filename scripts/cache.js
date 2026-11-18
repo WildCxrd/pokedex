@@ -18,16 +18,3 @@ function getAllPokemonFromCashe() {
 function getPokemonFromCashe(pokemonId) {
     return POKEMON_CACHE.find(p => p.id == pokemonId);
 }
-
-async function saveGenderDataInCachesAsync() {
-    const loadGenderPromises = [];
-
-    loadGenderPromises.push(tryGetPokemonGenders(1));
-    loadGenderPromises.push(tryGetPokemonGenders(2));
-    loadGenderPromises.push(tryGetPokemonGenders(3));
-    const genderPromiseResults = await Promise.all(loadGenderPromises);
-
-    POKEMON_GENDERS_FEMALE = genderPromiseResults[0];
-    POKEMON_GENDERS_MALE = genderPromiseResults[1];
-    POKEMON_GENDERS_GENDERLESS = genderPromiseResults[2];
-}
