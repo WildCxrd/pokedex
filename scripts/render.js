@@ -7,19 +7,19 @@ async function renderPokemonCardsFromCacheAsync() {
 
 async function renderPokemonCardsAsync(pokemonArray) {
     const pokemonCardsSection = document.getElementById("pokemonCardsSection");
-    let pokemonCardTemplates = "";
+    let pokemonCardsSectionContent = "";
 
     currentlyVisiblePokemon = pokemonArray.toSorted((p1, p2) => p1.id - p2.id);
 
     if (currentlyVisiblePokemon.length > 0) {
         await preloadPokemonCardsImages(currentlyVisiblePokemon);
-        pokemonCardTemplates = getPokemonCardTemplates(currentlyVisiblePokemon);
+        pokemonCardsSectionContent = getPokemonCardTemplates(currentlyVisiblePokemon);
     } else {
-        pokemonCardTemplates = getEmptyFilterResultsTemplate();
+        pokemonCardsSectionContent = getEmptyFilterResultsTemplate();
     }
 
     pokemonCardsSection.innerHTML = "";
-    pokemonCardsSection.innerHTML = pokemonCardTemplates;
+    pokemonCardsSection.innerHTML = pokemonCardsSectionContent;
 }
 
 async function preloadPokemonCardsImages(pokemonArray) {
