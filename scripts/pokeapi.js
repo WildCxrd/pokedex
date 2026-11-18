@@ -7,30 +7,15 @@ let pokemonTotalCount = 0;
 
 //#region API calls
 
-async function savePokemonsInCacheAsync(offset, limit) {
+async function tryGetPokemonAsync(offset, limit) {
     const url = `${pokemonBaseUrl}?offset=${offset}&limit=${limit}`;
     const pokemonResponseJson = await tryGetResponseJson(url);
     const pokemonUrls = tryGetPokemonResultUrls(pokemonResponseJson);
 
     if (pokemonUrls.length > 0) {
         const pokemonResponses = await tryGetPokemonResponsesAsync(pokemonUrls);
-        const pokemonJsons = await tryGetPokemonJsonsAsync(pokemonResponses);
-
-        savePokemonsInCashe(pokemonJsons);
+        return await tryParsePokemonJsonsAsync(pokemonResponses);
     }
-}
-
-async function saveGenderDataInCachesAsync() {
-    const loadGenderPromises = [];
-
-    loadGenderPromises.push(tryGetPokemonGenders(1));
-    loadGenderPromises.push(tryGetPokemonGenders(2));
-    loadGenderPromises.push(tryGetPokemonGenders(3));
-    const genderPromiseResults = await Promise.all(loadGenderPromises);
-
-    POKEMON_GENDERS_FEMALE = genderPromiseResults[0];
-    POKEMON_GENDERS_MALE = genderPromiseResults[1];
-    POKEMON_GENDERS_GENDERLESS = genderPromiseResults[2];
 }
 
 async function tryGetPokemonResponsesAsync(pokemonUrls) {
@@ -133,7 +118,7 @@ function tryGetPokemonResultUrls(pokemonResponseJson) {
     }
 }
 
-async function tryGetPokemonJsonsAsync(pokemonResponses) {
+async function tryParsePokemonJsonsAsync(pokemonResponses) {
     try {
         const pokemonResponsesToJsonPromises = pokemonResponses.map((response) => response.json());
         const pokemonJsons = await Promise.all(pokemonResponsesToJsonPromises);
