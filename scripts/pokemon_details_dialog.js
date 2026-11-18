@@ -32,6 +32,14 @@ function setPokemonDetailsImages(pokemon) {
     const detailsDialogPokemonImageWrapper = document.getElementById("detailsDialogPokemonImageWrapper");
     const detailsPokemonMainImage = document.getElementById("detailsPokemonMainImage");
 
+    for (let index = 0; index < detailsDialogPokemonImageWrapper.classList.length; index++) {
+        const imagewrapperClass = detailsDialogPokemonImageWrapper.classList[index];
+
+        if (imagewrapperClass.startsWith("type_")) {
+            detailsDialogPokemonImageWrapper.classList.remove(imagewrapperClass);
+        }
+    }
+
     detailsDialogPokemonImageWrapper.classList.add(`type_${pokemon.types[0].type.name}`);
     detailsPokemonMainImage.src = pokemon.sprites.front_default;
 }
