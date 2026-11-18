@@ -13,13 +13,7 @@ async function renderPokemonCardsAsync(pokemonArray) {
 
     if (currentlyVisiblePokemon.length > 0) {
         await preloadPokemonCardsImages(currentlyVisiblePokemon);
-
-        for (const pokemon of currentlyVisiblePokemon) {
-            const pokemonTypeTemplates = getPokemonTypeTemplates(pokemon.types);
-            pokemonCardTemplates += getPokemonCardTemplate(pokemon.sprites.other["official-artwork"].front_default,
-                pokemon.id, getFormattedPokedexNumber(pokemon.id), pokemon.name, pokemonTypeTemplates);
-        }
-
+        pokemonCardTemplates = getPokemonCardTemplates(currentlyVisiblePokemon);
     } else {
         pokemonCardTemplates = getEmptyFilterResultsTemplate();
     }

@@ -1,3 +1,15 @@
+function getPokemonCardTemplates(pokemonArray) {
+    let pokemonCardTemplates = "";
+
+    for (const pokemon of pokemonArray) {
+        const pokemonTypeTemplates = getPokemonTypeTemplates(pokemon.types);
+        pokemonCardTemplates += getPokemonCardTemplate(pokemon.sprites.other["official-artwork"].front_default,
+            pokemon.id, getFormattedPokedexNumber(pokemon.id), pokemon.name, pokemonTypeTemplates);
+    }
+
+    return pokemonCardTemplates;
+}
+
 function getPokemonTypeTemplates(pokemonTypes) {
     let pokemonTypeTemplates = "";
 
