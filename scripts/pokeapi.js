@@ -105,7 +105,7 @@ function tryGetPokemonResultUrls(pokemonResponseJson) {
         const pokemonUrls = [];
 
         pokemonResponseJson["results"].forEach(pokemonResult => {
-            const pokemonInLocalStorage = getPokemonFromCashe(pokemonResult.name);
+            const pokemonInLocalStorage = getPokemonFromCache(pokemonResult.name);
             if (pokemonInLocalStorage == null) {
                 pokemonUrls.push(pokemonResult.url);
             }

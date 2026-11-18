@@ -5,16 +5,16 @@ let POKEMON_GENDERS_GENDERLESS; // has gender.id = 3
 
 function savePokemonsInCashe(pokemonJsons) {
     pokemonJsons.forEach(pokemonJson => {
-        if (getPokemonFromCashe(pokemonJson.id) == undefined) {
+        if (getPokemonFromCache(pokemonJson.id) == undefined) {
             POKEMON_CACHE.push(pokemonJson);
         }
     });
 }
 
-function getAllPokemonFromCashe() {
+function getAllPokemonFromCache() {
     return POKEMON_CACHE;
 }
 
-function getPokemonFromCashe(pokemonId) {
+function getPokemonFromCache(pokemonId) {
     return POKEMON_CACHE.find(p => p.id == pokemonId);
 }

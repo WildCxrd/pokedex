@@ -6,7 +6,7 @@ async function initializeAsync() {
     POKEMON_GENDERS_GENDERLESS = dataDownloadsResults[2];
     savePokemonsInCashe(dataDownloadsResults[3]);
 
-    renderPokemonCardsFromCache();
+    renderPokemonCardsFromCacheAsync();
 }
 
 async function downloadInitialDataAsync() {

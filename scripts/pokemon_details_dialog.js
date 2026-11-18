@@ -1,6 +1,6 @@
 async function showPokemonDetailsDialogAsync(pokemonId) {
     const pokemonDetailsDialog = document.getElementById("pokemonDetailsDialog");
-    const pokemon = getPokemonFromCashe(pokemonId);
+    const pokemon = getPokemonFromCache(pokemonId);
     const formattedPokedexNumber = getFormattedPokedexNumber(pokemon.id);
     const pokemonFlavorText = await tryGetPokemonFlavorTextAsync(pokemonId);
     const formattedPokemonFlavorText = cleanText(pokemonFlavorText);

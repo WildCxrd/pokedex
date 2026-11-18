@@ -1,8 +1,8 @@
 let currentlyVisiblePokemon = [];
 
-function renderPokemonCardsFromCache() {
-    const allPokemonInCashe = getAllPokemonFromCashe();
-    renderPokemonCardsAsync(allPokemonInCashe);
+async function renderPokemonCardsFromCacheAsync() {
+    const allPokemonInCache = getAllPokemonFromCache();
+    await renderPokemonCardsAsync(allPokemonInCache);
 }
 
 async function renderPokemonCardsAsync(pokemonArray) {
