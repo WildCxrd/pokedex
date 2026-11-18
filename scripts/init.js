@@ -11,9 +11,9 @@ async function initializeAsync() {
 
 async function downloadInitialDataAsync() {
     const dataDownloads = [];
-    dataDownloads.push(tryGetPokemonGenders(1));
-    dataDownloads.push(tryGetPokemonGenders(2));
-    dataDownloads.push(tryGetPokemonGenders(3));
-    dataDownloads.push(tryGetPokemonAsync(0, 20));
+    dataDownloads.push(downloadPokemonGenderAsync(1));
+    dataDownloads.push(downloadPokemonGenderAsync(2));
+    dataDownloads.push(downloadPokemonGenderAsync(3));
+    dataDownloads.push(downloadPokemonRangeAsync(0, 20));
     return await Promise.all(dataDownloads);
 }

@@ -25,7 +25,7 @@ async function getPokemonAbilitiesTemplatesAsync(pokemonAbilities) {
 
     for (let index = 0; index < pokemonAbilities.length; index++) {
         const ability = pokemonAbilities[index];
-        const abilityEffectText = await getPokemonAbilityEffectTextAsync(ability);
+        const abilityEffectText = await getAbilityEffectTextAsync(ability);
         abilitiesTemplates += getPokemonAbilityTemplate(ability.ability.name, abilityEffectText);
     }
 
@@ -66,9 +66,9 @@ function getPokemonGenders(pokemon) {
     // see: https://pokeapi.co/docs/v2#genders
     const genders = [];
 
-    const femaleGender = getPokemonGender(pokemon.species.name, POKEMON_GENDERS_FEMALE);
-    const maleGender = getPokemonGender(pokemon.species.name, POKEMON_GENDERS_MALE)
-    const genderless = getPokemonGender(pokemon.species.name, POKEMON_GENDERS_GENDERLESS)
+    const femaleGender = getPokemonGenderFromCache(pokemon.species.name, POKEMON_GENDERS_FEMALE);
+    const maleGender = getPokemonGenderFromCache(pokemon.species.name, POKEMON_GENDERS_MALE)
+    const genderless = getPokemonGenderFromCache(pokemon.species.name, POKEMON_GENDERS_GENDERLESS)
 
     if (femaleGender != null) {
         genders.push(femaleGender);
@@ -83,7 +83,7 @@ function getPokemonGenders(pokemon) {
     return genders;
 }
 
-function getPokemonGender(pokemonSpeciesName, genderCache) {
+function getPokemonGenderFromCache(pokemonSpeciesName, genderCache) {
     const foundElement = genderCache.pokemon_species_details.find(s => s.pokemon_species.name == pokemonSpeciesName);
 
     if (foundElement != null) {
@@ -93,13 +93,24 @@ function getPokemonGender(pokemonSpeciesName, genderCache) {
     }
 }
 
-async function getPokemonAbilityEffectTextAsync(ability) {
-    if (ability.effect_text != undefined) {
-        return ability.effect_text;
-    } else {
-        ability.effect_text = await tryGetAbilityEffectTextAsync(ability.ability.url);
-        return ability.effect_text;
+
+async function getAbilityEffectTextAsync(ability, languageAbbreviation = "en") {
+    let effectText = "";
+    let abilityInCache = POKEMON_ABILITIES_CACHE.find(a => a.name == ability.ability.name);
+
+    if (abilityInCache == undefined) {
+        abilityInCache = await tryGetResponseJsonAsync(ability.ability.url);
+        POKEMON_ABILITIES_CACHE.push(abilityInCache);
     }
+
+    for (const effectEntry of abilityInCache.effect_entries) {
+        if (effectEntry.language.name == languageAbbreviation) {
+            effectText = effectEntry.effect;
+            break;
+        }
+    }
+
+    return effectText;
 }
 
 function getFormattedPokedexNumber(pokemonId) {

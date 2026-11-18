@@ -1,21 +1,41 @@
 async function showPokemonDetailsDialogAsync(pokemonId) {
     const pokemonDetailsDialog = document.getElementById("pokemonDetailsDialog");
+
     const pokemon = getPokemonFromCache(pokemonId);
+    if (pokemon.species_cache == undefined) {
+        pokemon.species_cache = await tryGetResponseJsonAsync(pokemon.species.url);
+    }
+    if (pokemon.genders_cache == undefined) {
+        pokemon.genders_cache = getPokemonGenders(pokemon);
+    }
+
     const formattedPokedexNumber = getFormattedPokedexNumber(pokemon.id);
-    const pokemonFlavorText = await tryGetPokemonFlavorTextAsync(pokemonId);
-    const formattedPokemonFlavorText = cleanText(pokemonFlavorText);
+    const formattedPokemonFlavorText = cleanText(pokemon.species_cache.flavor_text_entries[0].flavor_text);
 
-    const pokemonGenders = getPokemonGenders(pokemon);
-    const pokemonGenderTemplates = getPokemonGenderTemplates(pokemonGenders);
-
+    const pokemonGenderTemplates = getPokemonGenderTemplates(pokemon.genders_cache);
     const pokemonAbilitiesTemplates = await getPokemonAbilitiesTemplatesAsync(pokemon.abilities);
 
+    setPokemonImageWrapperClasses(pokemon);
+    await setPokemonDetailsImagesAsync(pokemon, pokemon.genders_cache);
     setPokemonDetailsTexts(formattedPokedexNumber, pokemon.name, formattedPokemonFlavorText);
-    setPokemonDetailsImages(pokemon);
     setPokemonDetailsTypes(pokemon);
     setPokemonDetails(pokemon, pokemonGenderTemplates, pokemonAbilitiesTemplates);
 
     pokemonDetailsDialog.showModal();
+}
+
+function setPokemonImageWrapperClasses(pokemon) {
+    const detailsDialogPokemonImageWrapper = document.getElementById("detailsDialogPokemonImageWrapper");
+
+    for (let index = 0; index < detailsDialogPokemonImageWrapper.classList.length; index++) {
+        const imagewrapperClass = detailsDialogPokemonImageWrapper.classList[index];
+
+        if (imagewrapperClass.startsWith("type_")) {
+            detailsDialogPokemonImageWrapper.classList.remove(imagewrapperClass);
+        }
+    }
+
+    detailsDialogPokemonImageWrapper.classList.add(`type_${pokemon.types[0].type.name}`);
 }
 
 function setPokemonDetailsTexts(formattedPokemonId, pokemonName, pokemonFlavorText) {
@@ -28,19 +48,9 @@ function setPokemonDetailsTexts(formattedPokemonId, pokemonName, pokemonFlavorTe
     pokemonFlavorTextElement.innerHTML = pokemonFlavorText;
 }
 
-function setPokemonDetailsImages(pokemon) {
-    const detailsDialogPokemonImageWrapper = document.getElementById("detailsDialogPokemonImageWrapper");
+async function setPokemonDetailsImagesAsync(pokemon, pokemonGenders) {
     const detailsPokemonMainImage = document.getElementById("detailsPokemonMainImage");
-
-    for (let index = 0; index < detailsDialogPokemonImageWrapper.classList.length; index++) {
-        const imagewrapperClass = detailsDialogPokemonImageWrapper.classList[index];
-
-        if (imagewrapperClass.startsWith("type_")) {
-            detailsDialogPokemonImageWrapper.classList.remove(imagewrapperClass);
-        }
-    }
-
-    detailsDialogPokemonImageWrapper.classList.add(`type_${pokemon.types[0].type.name}`);
+    await preloadDetailImagesAsync(pokemon, pokemonGenders);
     detailsPokemonMainImage.src = pokemon.sprites.front_default;
 }
 
@@ -71,4 +81,15 @@ function showAbilityDetailsOverlay(abilityName) {
 function closeAbilityDetailsOverlay(abilityName) {
     const abilityDetailsOverlay = document.getElementById(`abilityDetailsOverlay_${abilityName}`);
     abilityDetailsOverlay.classList.remove("open");
+}
+
+async function preloadDetailImagesAsync(pokemon, pokemonGenders) {
+    const imagePreloads = [];
+    if (pokemonGenders.find(g => g.id == 1)) {
+        imagePreloads.push(preloadImagesAsync(pokemon.sprites.front_female, pokemon.sprites.back_female));
+    }
+    if (pokemonGenders.find(g => g.id == 2)) {
+        imagePreloads.push(preloadImagesAsync(pokemon.sprites.front_default, pokemon.sprites.back_default));
+    }
+    await Promise.all(imagePreloads);
 }
