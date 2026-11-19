@@ -1,8 +1,8 @@
-function getPokemonCardTemplate(imgSrc, pokemonId, pokedexNumber, pokemonName, pokemonTypesTemplate) {
+function getPokemonCardTemplate(imgSrc, pokemonId, pokedexNumber, pokemonName, pokemonPrimaryTypeName, pokemonTypesTemplate) {
     return `
         <article class="pokemon_card" onclick="showPokemonDetailsDialogAsync(${pokemonId})">
             <div class="pokemon_image_wrapper">
-                <img id="pokemonImage" src="${imgSrc}" alt="The pokemon ${pokemonName}">
+                <img id="pokemonImage" src="${imgSrc}" alt="The pokemon ${pokemonName}" class="type_${pokemonPrimaryTypeName}">
             </div>
             <p id="pokedexNumber">Nr. ${pokedexNumber}</p>
             <h2 id="pokemonName">${pokemonName}</h2>

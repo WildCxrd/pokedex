@@ -4,7 +4,7 @@ function getPokemonCardTemplates(pokemonArray) {
     for (const pokemon of pokemonArray) {
         const pokemonTypeTemplates = getPokemonTypeTemplates(pokemon.types);
         pokemonCardTemplates += getPokemonCardTemplate(pokemon.sprites.other["official-artwork"].front_default,
-            pokemon.id, getFormattedPokedexNumber(pokemon.id), pokemon.name, pokemonTypeTemplates);
+            pokemon.id, getFormattedPokedexNumber(pokemon.id), pokemon.name, pokemon.types[0].type.name, pokemonTypeTemplates);
     }
 
     return pokemonCardTemplates;
