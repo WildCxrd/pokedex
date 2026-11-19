@@ -1,18 +1,18 @@
-function filterPokemonCardsOnEnter(event) {
+async function filterPokemonCardsOnEnterAsync(event) {
     if (event.key === "Enter") {
-        filterPokemonCards();
+        await filterPokemonCardsAsync();
     }
 }
 
-function filterPokemonCards() {
+async function filterPokemonCardsAsync() {
     const filterInput = document.getElementById("filterInput");
     const filterInputTrimmedValue = filterInput.value.trim();
 
     if (filterInputTrimmedValue != "") {
         const filteredPokemon = filterPokemon(POKEMON_CACHE, filterInputTrimmedValue);
-        renderPokemonCards(filteredPokemon);
+        await renderPokemonCardsAsync(filteredPokemon);
     } else {
-        renderPokemonCardsFromCache();
+        await renderPokemonCardsFromCacheAsync();
     }
 }
 
