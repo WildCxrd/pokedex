@@ -1,20 +1,22 @@
+let currentPokemon;
+
 async function showPokemonDetailsDialogAsync(pokemonId) {
     const pokemonDetailsDialog = document.getElementById("pokemonDetailsDialog");
 
-    const pokemon = getPokemonFromCache(pokemonId);
-    await cacheNotExistingPokemonDataAsync(pokemon);
+    currentPokemon = getPokemonFromCache(pokemonId);
+    await cacheNotExistingPokemonDataAsync(currentPokemon);
 
-    const formattedPokedexNumber = getFormattedPokedexNumber(pokemon.id);
-    const formattedPokemonFlavorText = cleanText(pokemon.species_cache.flavor_text_entries[0].flavor_text);
+    const formattedPokedexNumber = getFormattedPokedexNumber(currentPokemon.id);
+    const formattedPokemonFlavorText = cleanText(currentPokemon.species_cache.flavor_text_entries[0].flavor_text);
 
-    const pokemonGenderTemplates = getPokemonGenderTemplates(pokemon.genders_cache);
-    const pokemonAbilitiesTemplates = await getPokemonAbilitiesTemplatesAsync(pokemon.abilities);
+    const pokemonGenderTemplates = getPokemonGenderTemplates(currentPokemon.genders_cache);
+    const pokemonAbilitiesTemplates = await getPokemonAbilitiesTemplatesAsync(currentPokemon.abilities);
 
-    setPokemonImageWrapperClasses(pokemon);
-    await setPokemonDetailsImagesAsync(pokemon, pokemon.genders_cache);
-    setPokemonDetailsTexts(formattedPokedexNumber, pokemon.name, formattedPokemonFlavorText);
-    setPokemonDetailsTypes(pokemon);
-    setPokemonDetails(pokemon, pokemonGenderTemplates, pokemonAbilitiesTemplates);
+    setPokemonImageWrapperClasses(currentPokemon);
+    await setPokemonDetailsImagesAsync(currentPokemon, currentPokemon.genders_cache);
+    setPokemonDetailsTexts(formattedPokedexNumber, currentPokemon.name, formattedPokemonFlavorText);
+    setPokemonDetailsTypes(currentPokemon);
+    setPokemonDetails(currentPokemon, pokemonGenderTemplates, pokemonAbilitiesTemplates);
 
     pokemonDetailsDialog.showModal();
 }
@@ -46,7 +48,7 @@ function setPokemonDetailsTexts(formattedPokemonId, pokemonName, pokemonFlavorTe
 async function setPokemonDetailsImagesAsync(pokemon, pokemonGenders) {
     const detailsPokemonMainImage = document.getElementById("detailsPokemonMainImage");
     await preloadDetailImagesAsync(pokemon, pokemonGenders);
-    detailsPokemonMainImage.src = pokemon.sprites.front_default;
+    detailsPokemonMainImage.src = pokemon.sprites.other["official-artwork"].front_default;
 }
 
 function setPokemonDetailsTypes(pokemon) {
@@ -87,4 +89,16 @@ async function preloadDetailImagesAsync(pokemon, pokemonGenders) {
         imagePreloads.push(preloadImagesAsync(pokemon.sprites.front_default, pokemon.sprites.back_default));
     }
     await Promise.all(imagePreloads);
+}
+
+function changeGender(genderId)
+{
+    switch (genderId) {
+        case currentPokemon.species_cache.has_gender_differences && FEMALE_GENDER_VALUE:
+            detailsPokemonMainImage.src = currentPokemon.sprites.front_female;
+            break;
+        default:
+            detailsPokemonMainImage.src = currentPokemon.sprites.front_default;
+            break;
+    }
 }

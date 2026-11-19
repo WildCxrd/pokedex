@@ -56,7 +56,7 @@ function getPokemonGenderTemplates(pokemonGenders) {
                 break;
         }
 
-        genderTemplates += getPokemonGenderTemplate(gender.id, gender.name, genderImgSrc, genderImgAlt)
+        genderTemplates += getPokemonGenderButtonTemplate(gender.id, gender.name, genderImgSrc, genderImgAlt)
     });
 
     return genderTemplates;

@@ -28,7 +28,7 @@ function getEmptyFilterResultsTemplate() {
     `;
 }
 
-function getPokemonGenderTemplate(genderId, genderName, imgSrc, imgAlt) {
+function getPokemonGenderButtonTemplate(genderId, genderName, imgSrc, imgAlt) {
     return `
         <button id="${genderName}GenderButton" class="gender_button circle_button" onclick="changeGender(${genderId})">
             <img src="${imgSrc}" alt="${imgAlt}">
