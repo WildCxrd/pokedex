@@ -1,6 +1,8 @@
 let currentPokemon;
 
 async function showPokemonDetailsDialogAsync(pokemonId) {
+    showPokemonDetailsLoaderDialog();
+
     const pokemonDetailsDialog = document.getElementById("pokemonDetailsDialog");
 
     currentPokemon = getPokemonFromCache(pokemonId);
@@ -18,6 +20,7 @@ async function showPokemonDetailsDialogAsync(pokemonId) {
     setPokemonDetailsTypes(currentPokemon);
     setPokemonDetails(currentPokemon, pokemonGenderTemplates, pokemonAbilitiesTemplates);
 
+    closePokemonDetailsLoaderDialog();
     pokemonDetailsDialog.showModal();
 }
 
@@ -53,7 +56,7 @@ function setPokemonDetailsTexts(formattedPokemonId, pokemonName, pokemonFlavorTe
 
 async function setPokemonDetailsImagesAsync(pokemon, pokemonGenders) {
     const detailsPokemonMainImage = document.getElementById("detailsPokemonMainImage");
-    await preloadDetailImagesAsync(pokemon, pokemonGenders);
+    await preloadGenderImagesAsync(pokemon, pokemonGenders);
     detailsPokemonMainImage.src = pokemon.sprites.other["official-artwork"].front_default;
 }
 
@@ -86,7 +89,7 @@ function closeAbilityDetailsOverlay(abilityName) {
     abilityDetailsOverlay.classList.remove("open");
 }
 
-async function preloadDetailImagesAsync(pokemon, pokemonGenders) {
+async function preloadGenderImagesAsync(pokemon, pokemonGenders) {
     const imagePreloads = [];
     if (pokemon.species_cache.has_gender_differences && pokemonGenders.find(g => g.id == FEMALE_GENDER_VALUE)) {
         imagePreloads.push(preloadImagesAsync(pokemon.sprites.front_female, pokemon.sprites.back_female));

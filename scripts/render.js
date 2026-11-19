@@ -6,7 +6,7 @@ async function renderPokemonCardsFromCacheAsync() {
 }
 
 async function renderPokemonCardsAsync(pokemonArray) {
-    showMainListLoaderLoader();
+    showMainListLoader();
     toggleFilterDisabled();
 
     const pokemonCardsWrapper = document.getElementById("pokemonCardsWrapper");

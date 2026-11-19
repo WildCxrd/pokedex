@@ -12,7 +12,19 @@
     left: calc(50% - 50px);
 }
 
-.loader>img {
+.loader_dialog[open] {
+    background-color: unset;
+    border: unset;
+    outline: unset;
+    overflow: hidden;
+
+    margin: auto;
+
+    display: flex;
+}
+
+.loader>img,
+.loader_dialog>img {
     height: 100px;
     width: 100px;
 
