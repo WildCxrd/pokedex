@@ -80,7 +80,7 @@ function closeAbilityDetailsOverlay(abilityName) {
 
 async function preloadDetailImagesAsync(pokemon, pokemonGenders) {
     const imagePreloads = [];
-    if (pokemonGenders.find(g => g.id == 1)) {
+    if (pokemon.species_cache.has_gender_differences && pokemonGenders.find(g => g.id == 1)) {
         imagePreloads.push(preloadImagesAsync(pokemon.sprites.front_female, pokemon.sprites.back_female));
     }
     if (pokemonGenders.find(g => g.id == 2)) {
