@@ -11,9 +11,9 @@ async function initializeAsync() {
 
 async function downloadInitialDataAsync() {
     const dataDownloads = [];
-    dataDownloads.push(downloadPokemonGenderAsync(1));
-    dataDownloads.push(downloadPokemonGenderAsync(2));
-    dataDownloads.push(downloadPokemonGenderAsync(3));
+    dataDownloads.push(downloadPokemonGenderAsync(FEMALE_GENDER_VALUE));
+    dataDownloads.push(downloadPokemonGenderAsync(MALE_GENDER_VALUE));
+    dataDownloads.push(downloadPokemonGenderAsync(GENDERLESS_GENDER_VALUE));
     dataDownloads.push(downloadPokemonRangeAsync(0, 20));
     return await Promise.all(dataDownloads);
 }

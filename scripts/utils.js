@@ -40,15 +40,15 @@ function getPokemonGenderTemplates(pokemonGenders) {
         let genderImgAlt;
 
         switch (gender.id) {
-            case 1:
+            case FEMALE_GENDER_VALUE:
                 genderImgSrc = "../assets/icons/female.png"
                 genderImgAlt = "A female symbol."
                 break;
-            case 2:
+            case MALE_GENDER_VALUE:
                 genderImgSrc = "../assets/icons/male.png"
                 genderImgAlt = "A male symbol."
                 break;
-            case 3:
+            case GENDERLESS_GENDER_VALUE:
                 genderImgSrc = "../assets/icons/neutrum.png"
                 genderImgAlt = "A neutrum symbol."
                 break;

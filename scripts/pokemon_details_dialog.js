@@ -80,10 +80,10 @@ function closeAbilityDetailsOverlay(abilityName) {
 
 async function preloadDetailImagesAsync(pokemon, pokemonGenders) {
     const imagePreloads = [];
-    if (pokemon.species_cache.has_gender_differences && pokemonGenders.find(g => g.id == 1)) {
+    if (pokemon.species_cache.has_gender_differences && pokemonGenders.find(g => g.id == FEMALE_GENDER_VALUE)) {
         imagePreloads.push(preloadImagesAsync(pokemon.sprites.front_female, pokemon.sprites.back_female));
     }
-    if (pokemonGenders.find(g => g.id == 2)) {
+    if (pokemonGenders.find(g => g.id == MALE_GENDER_VALUE)) {
         imagePreloads.push(preloadImagesAsync(pokemon.sprites.front_default, pokemon.sprites.back_default));
     }
     await Promise.all(imagePreloads);

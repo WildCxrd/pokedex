@@ -1,8 +1,13 @@
 const POKEMON_CACHE = [];
 const POKEMON_ABILITIES_CACHE = [];
-let POKEMON_GENDERS_FEMALE; // has gender.id = 1
-let POKEMON_GENDERS_MALE; // has gender.id = 2
-let POKEMON_GENDERS_GENDERLESS; // has gender.id = 3
+
+const FEMALE_GENDER_VALUE = 1;
+const MALE_GENDER_VALUE = 2; // male is also the default gender
+const GENDERLESS_GENDER_VALUE = 3;
+
+let POKEMON_GENDERS_FEMALE;
+let POKEMON_GENDERS_MALE;
+let POKEMON_GENDERS_GENDERLESS;
 
 function savePokemonsInCache(pokemonJsons) {
     pokemonJsons.forEach(pokemonJson => {
