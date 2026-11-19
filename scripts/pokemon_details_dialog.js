@@ -12,7 +12,7 @@ async function showPokemonDetailsDialogAsync(pokemonId) {
     const pokemonGenderTemplates = getPokemonGenderTemplates(currentPokemon.genders_cache);
     const pokemonAbilitiesTemplates = await getPokemonAbilitiesTemplatesAsync(currentPokemon.abilities);
 
-    setPokemonImageWrapperClasses(currentPokemon);
+    setPokemonImageWrapperBackground(currentPokemon);
     await setPokemonDetailsImagesAsync(currentPokemon, currentPokemon.genders_cache);
     setPokemonDetailsTexts(formattedPokedexNumber, currentPokemon.name, formattedPokemonFlavorText);
     setPokemonDetailsTypes(currentPokemon);
@@ -21,7 +21,7 @@ async function showPokemonDetailsDialogAsync(pokemonId) {
     pokemonDetailsDialog.showModal();
 }
 
-function setPokemonImageWrapperClasses(pokemon) {
+function setPokemonImageWrapperBackground(pokemon) {
     const detailsDialogPokemonImageWrapper = document.getElementById("detailsDialogPokemonImageWrapper");
 
     for (let index = 0; index < detailsDialogPokemonImageWrapper.classList.length; index++) {
@@ -32,7 +32,13 @@ function setPokemonImageWrapperClasses(pokemon) {
         }
     }
 
-    detailsDialogPokemonImageWrapper.classList.add(`type_${pokemon.types[0].type.name}`);
+    if (pokemon.types.length < 2) {
+        detailsDialogPokemonImageWrapper.style.setProperty("background", null);
+        detailsDialogPokemonImageWrapper.classList.add(`type_${pokemon.types[0].type.name}`);
+    } else {
+        const typesBackgroundGradient = getTypesBackgroundGradient(pokemon.types[0].type.name, pokemon.types[1].type.name);
+        detailsDialogPokemonImageWrapper.style.setProperty("background", typesBackgroundGradient);
+    }
 }
 
 function setPokemonDetailsTexts(formattedPokemonId, pokemonName, pokemonFlavorText) {
@@ -91,8 +97,7 @@ async function preloadDetailImagesAsync(pokemon, pokemonGenders) {
     await Promise.all(imagePreloads);
 }
 
-function changeGender(genderId)
-{
+function changeGender(genderId) {
     switch (genderId) {
         case currentPokemon.species_cache.has_gender_differences && FEMALE_GENDER_VALUE:
             detailsPokemonMainImage.src = currentPokemon.sprites.front_female;

@@ -72,5 +72,5 @@ function getPokemonAbilityTemplate(abilityName, abilityEffectText) {
 }
 
 function getTypesBackgroundLineGradientTemplate(firstColor, secondColor) {
-    return `linear-gradient(45deg, ${firstColor} 40%, ${secondColor} 60%);`;
+    return `linear-gradient(45deg, ${firstColor} 40%, ${secondColor} 60%)`;
 }
