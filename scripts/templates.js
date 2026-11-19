@@ -1,8 +1,23 @@
-function getPokemonCardTemplate(imgSrc, pokemonId, pokedexNumber, pokemonName, pokemonPrimaryTypeName, pokemonTypesTemplate) {
+function getPokemonWithOneTypeCardTemplate(imgSrc, pokemonId, pokedexNumber, pokemonName, pokemonPrimaryTypeName, pokemonTypesTemplate) {
     return `
         <article class="pokemon_card" onclick="showPokemonDetailsDialogAsync(${pokemonId})">
             <div class="pokemon_image_wrapper">
                 <img id="pokemonImage" src="${imgSrc}" alt="The pokemon ${pokemonName}" class="type_${pokemonPrimaryTypeName}">
+            </div>
+            <p id="pokedexNumber">Nr. ${pokedexNumber}</p>
+            <h2 id="pokemonName">${pokemonName}</h2>
+            <div id="pokemonTypesWrapper">
+                ${pokemonTypesTemplate}
+            </div>
+        </article>
+    `;
+}
+
+function getPokemonWithMultipleTypesCardTemplate(imgSrc, pokemonId, pokedexNumber, pokemonName, typesBackgroundGradient, pokemonTypesTemplate) {
+    return `
+        <article class="pokemon_card" onclick="showPokemonDetailsDialogAsync(${pokemonId})">
+            <div class="pokemon_image_wrapper">
+                <img id="pokemonImage" src="${imgSrc}" alt="The pokemon ${pokemonName}" style="background: ${typesBackgroundGradient}">
             </div>
             <p id="pokedexNumber">Nr. ${pokedexNumber}</p>
             <h2 id="pokemonName">${pokemonName}</h2>
@@ -54,4 +69,8 @@ function getPokemonAbilityTemplate(abilityName, abilityEffectText) {
             </div>
         </div>
     `;
+}
+
+function getTypesBackgroundLineGradientTemplate(firstColor, secondColor) {
+    return `linear-gradient(45deg, ${firstColor} 40%, ${secondColor} 60%);`;
 }

@@ -3,11 +3,29 @@ function getPokemonCardTemplates(pokemonArray) {
 
     for (const pokemon of pokemonArray) {
         const pokemonTypeTemplates = getPokemonTypeTemplates(pokemon.types);
-        pokemonCardTemplates += getPokemonCardTemplate(pokemon.sprites.other["official-artwork"].front_default,
-            pokemon.id, getFormattedPokedexNumber(pokemon.id), pokemon.name, pokemon.types[0].type.name, pokemonTypeTemplates);
+        let pokemonCardTemplate;
+
+        if (pokemon.types.length < 2) {
+            pokemonCardTemplate = getPokemonWithOneTypeCardTemplate(pokemon.sprites.other["official-artwork"].front_default,
+                pokemon.id, getFormattedPokedexNumber(pokemon.id), pokemon.name, pokemon.types[0].type.name, pokemonTypeTemplates);
+        }
+        else {
+            const typesBackgroundGradient = createTypesBackgroundGradient(pokemon.types[0].type.name, pokemon.types[1].type.name);
+            pokemonCardTemplate = getPokemonWithMultipleTypesCardTemplate(pokemon.sprites.other["official-artwork"].front_default,
+                pokemon.id, getFormattedPokedexNumber(pokemon.id), pokemon.name, typesBackgroundGradient, pokemonTypeTemplates);
+        }
+
+        pokemonCardTemplates += pokemonCardTemplate;
     }
 
     return pokemonCardTemplates;
+}
+
+function createTypesBackgroundGradient(firstTypeName, secondTypeName) {
+    const root = window.getComputedStyle(document.documentElement);
+    const firstTypeColor = root.getPropertyValue(`--type-color-${firstTypeName}`);
+    const secondTypeColor = root.getPropertyValue(`--type-color-${secondTypeName}`);
+    return getTypesBackgroundLineGradientTemplate(firstTypeColor, secondTypeColor);
 }
 
 function getPokemonTypeTemplates(pokemonTypes) {

@@ -11,73 +11,73 @@
 
 .type_bug {
     color: white;
-    background-color: rgb(114, 159, 63);
+    background-color: var(--type-color-bug);
 }
 
 .type_dark {
     color: white;
-    background-color: rgb(112, 112, 112);
+    background-color: var(--type-color-dark);
 }
 
 .type_electric {
-    background-color: rgb(238, 213, 53);
+    background-color: var(--type-color-electric);
 }
 
 .type_fairy {
-    background-color: rgb(253, 185, 233);
+    background-color: var(--type-color-fairy);
 }
 
 .type_fire {
     color: white;
-    background-color: rgb(253, 125, 36);
+    background-color: var(--type-color-fire);
 }
 
 .type_fighting {
     color: white;
-    background-color: rgb(213, 103, 35);
+    background-color: var(--type-color-fighting);
 }
 
 .type_flying {
-    background-color: rgb(61, 199, 239);
+    background-color: var(--type-color-flying);
 }
 
 .type_grass {
-    background-color: rgb(155, 204, 80);
+    background-color: var(--type-color-grass);
 }
 
 .type_ground {
     color: white;
-    background-color: rgb(247, 222, 63);
+    background-color: var(--type-color-ground);
 }
 
 .type_ice {
-    background-color: rgb(81, 196, 231);
+    background-color: var(--type-color-ice);
 }
 
 .type_normal {
-    background-color: rgb(164, 172, 175);
+    background-color: var(--type-color-normal);
 }
 
 .type_poison {
     color: white;
-    background-color: rgb(185, 127, 201);
+    background-color: var(--type-color-poison);
 }
 
 .type_psychic {
     color: white;
-    background-color: rgb(243, 102, 185);
+    background-color: var(--type-color-psychic);
 }
 
 .type_rock {
     color: white;
-    background-color: rgb(163, 140, 33);
+    background-color: var(--type-color-rock);
 }
 
 .type_steel {
-    background-color: rgb(158, 183, 184);
+    background-color: var(--type-color-steel);
 }
 
 .type_water {
     color: white;
-    background-color: rgb(69, 146, 196);
+    background-color: var(--type-color-water);
 }
