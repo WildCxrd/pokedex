@@ -6,7 +6,10 @@ async function renderPokemonCardsFromCacheAsync() {
 }
 
 async function renderPokemonCardsAsync(pokemonArray) {
-    const pokemonCardsSection = document.getElementById("pokemonCardsSection");
+    showMainListLoaderLoader();
+    toggleFilterDisabled();
+
+    const pokemonCardsWrapper = document.getElementById("pokemonCardsWrapper");
     let pokemonCardsSectionContent = "";
 
     currentlyVisiblePokemon = pokemonArray.toSorted((p1, p2) => p1.id - p2.id);
@@ -19,6 +22,17 @@ async function renderPokemonCardsAsync(pokemonArray) {
         pokemonCardsSectionContent = getEmptyFilterResultsTemplate();
     }
 
-    pokemonCardsSection.innerHTML = "";
-    pokemonCardsSection.innerHTML = pokemonCardsSectionContent;
+    pokemonCardsWrapper.innerHTML = "";
+    pokemonCardsWrapper.innerHTML = pokemonCardsSectionContent;
+
+    closeMainListLoader();
+    toggleFilterDisabled();
+}
+
+function toggleFilterDisabled() {
+    const filterInput = document.getElementById("filterInput");
+    const filterButton = document.getElementById("filterButton");
+
+    filterInput.disabled = !filterInput.disabled;
+    filterButton.disabled = !filterButton.disabled;
 }

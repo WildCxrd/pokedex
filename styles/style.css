@@ -99,8 +99,16 @@ a {
     padding: 2em max(50px, var(--content-limitation-calculation));
 
     display: flex;
+
+    position: relative;
+}
+
+.cards_wrapper {
+    width: 100%;
+
+    display: flex;
     justify-content: center;
-    align-items: start;
+    align-items: center;
     flex-wrap: wrap;
     gap: 2em;
 }
