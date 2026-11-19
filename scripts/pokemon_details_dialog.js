@@ -2,12 +2,7 @@ async function showPokemonDetailsDialogAsync(pokemonId) {
     const pokemonDetailsDialog = document.getElementById("pokemonDetailsDialog");
 
     const pokemon = getPokemonFromCache(pokemonId);
-    if (pokemon.species_cache == undefined) {
-        pokemon.species_cache = await tryGetResponseJsonAsync(pokemon.species.url);
-    }
-    if (pokemon.genders_cache == undefined) {
-        pokemon.genders_cache = getPokemonGenders(pokemon);
-    }
+    await cacheNotExistingPokemonDataAsync(pokemon);
 
     const formattedPokedexNumber = getFormattedPokedexNumber(pokemon.id);
     const formattedPokemonFlavorText = cleanText(pokemon.species_cache.flavor_text_entries[0].flavor_text);

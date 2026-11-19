@@ -93,7 +93,6 @@ function getPokemonGenderFromCache(pokemonSpeciesName, genderCache) {
     }
 }
 
-
 async function getAbilityEffectTextAsync(ability, languageAbbreviation = "en") {
     let effectText = "";
     let abilityInCache = POKEMON_ABILITIES_CACHE.find(a => a.name == ability.ability.name);
@@ -143,4 +142,13 @@ async function preloadImagesAsync(...imageUrls) {
     }
 
     await Promise.all(imageDownloads);
+}
+
+async function cacheNotExistingPokemonDataAsync(pokemon) {
+    if (pokemon.species_cache == undefined) {
+        pokemon.species_cache = await tryGetResponseJsonAsync(pokemon.species.url);
+    }
+    if (pokemon.genders_cache == undefined) {
+        pokemon.genders_cache = getPokemonGenders(pokemon);
+    }
 }
