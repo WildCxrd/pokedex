@@ -11,6 +11,10 @@ body {
     flex-direction: column;
 }
 
+body:has(dialog[open]) {
+    overflow: hidden;
+}
+
 main {
     background-color: white;
 
