@@ -9,11 +9,13 @@
     <link rel="stylesheet" href="styles/standard.css">
     <link rel="stylesheet" href="styles/variables.css">
     <link rel="stylesheet" href="styles/fonts.css">
+    <link rel="stylesheet" href="styles/custom_elements.css">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/pokemon_card.css">
     <link rel="stylesheet" href="styles/pokemon_types.css">
     <link rel="stylesheet" href="styles/pokemon_details_dialog.css">
     <link rel="stylesheet" href="styles/loader.css">
+
 
     <link rel="shortcut icon" href="assets/icons/red-team.png" type="image/x-icon">
 
@@ -58,8 +60,8 @@
 
             <button id="loadPokemonButton" onclick="downloadAndRenderNextPokemon()">
                 <p>Load next</p>
-                <input id="loadPokemonInput" type="number" value="20" min="1"
-                    onclick="loadPokemonInputClicked(event)" onkeypress="loadPokemonInputKeyPressed(event)">
+                <input id="loadPokemonInput" type="number" value="20" min="1" onclick="loadPokemonInputClicked(event)"
+                    onkeypress="loadPokemonInputKeyPressed(event)">
                 <p>Pokémon</p>
             </button>
 
@@ -71,7 +73,15 @@
 
         <dialog id="pokemonDetailsDialog" class="pokemon_details_dialog" closedby="any">
             <div id="detailsDialogPokemonImageWrapper" class="details_dialog_pokemon_image_wrapper">
+                <button class="circle_button" onclick="showPreviousPokemonDetailsAsync()">
+                    <img src="../assets/icons/lower_than.png" alt="A lower-than symbol.">
+                </button>
+
                 <img id="detailsPokemonMainImage">
+
+                <button class="circle_button" onclick="showNextPokemonDetailsAsync()">
+                    <img src="../assets/icons/greater_than.png" alt="A greater-than symbol.">
+                </button>
             </div>
 
             <div class="base_infos_wrapper">

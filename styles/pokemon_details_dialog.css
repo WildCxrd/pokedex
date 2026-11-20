@@ -11,7 +11,7 @@
 }
 
 #pokemonFlavorText {
-    background-color: rgb(238, 230, 230);
+    background-color: var(--pokemon-cream-white);
 
     padding: 20px;
 
@@ -54,12 +54,18 @@
 .details_dialog_pokemon_image_wrapper {
     height: 200px;
 
+    padding: 0px 10px;
     border-radius: var(--detail-card-border-radius);
 
     outline: 1px solid black;
 
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.details_dialog_pokemon_image_wrapper>img {
+    height: 100%;
 }
 
 .base_infos_wrapper {
@@ -102,19 +108,6 @@
     font-weight: bold;
 }
 
-.gender_button {
-    background-color: rgb(238, 230, 230);
-}
-
-.gender_button:hover,
-.gender_button:focus-visible {
-    outline: 1px solid black;
-}
-
-.gender_button>img {
-    height: 100%;
-}
-
 .pokemon_ability_wrapper {
     display: flex;
     align-items: center;
@@ -143,6 +136,11 @@
 
 .question_mark_button>img {
     height: 100%;
+}
+
+.question_mark_button:hover,
+.question_mark_button:focus-visible {
+    background-color: darkgray;
 }
 
 .ability_details_overlay {
@@ -203,4 +201,12 @@
     display: flex;
     justify-content: center;
     align-self: flex-end;
+
+    cursor: pointer;
+}
+
+.ability_details_overlay_close_button:hover,
+.ability_details_overlay_close_button:focus-visible {
+    background-color: darkgray;
+    outline: 1px solid black;
 }

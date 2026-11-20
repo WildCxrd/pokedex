@@ -1,9 +1,23 @@
 let currentPokemon;
 
 async function showPokemonDetailsDialogAsync(pokemonId) {
-    showPokemonDetailsLoaderDialog();
-
     const pokemonDetailsDialog = document.getElementById("pokemonDetailsDialog");
+    await setPokemonDetailsDialogViewAsync(pokemonId);
+    pokemonDetailsDialog.showModal();
+}
+
+async function showPreviousPokemonDetailsAsync() {
+    const previousPokemonId = getPreviousPokemonInCache(currentPokemon.id).id;
+    await setPokemonDetailsDialogViewAsync(previousPokemonId);
+}
+
+async function showNextPokemonDetailsAsync() {
+    const nextPokemonId = getNextPokemonInCache(currentPokemon.id).id;
+    await setPokemonDetailsDialogViewAsync(nextPokemonId);
+}
+
+async function setPokemonDetailsDialogViewAsync(pokemonId) {
+    showPokemonDetailsLoaderDialog();
 
     currentPokemon = getPokemonFromCache(pokemonId);
     await cacheNotExistingPokemonDataAsync(currentPokemon);
@@ -21,7 +35,6 @@ async function showPokemonDetailsDialogAsync(pokemonId) {
     setPokemonDetails(currentPokemon, pokemonGenderTemplates, pokemonAbilitiesTemplates);
 
     closePokemonDetailsLoaderDialog();
-    pokemonDetailsDialog.showModal();
 }
 
 function setPokemonImageWrapperBackground(pokemon) {

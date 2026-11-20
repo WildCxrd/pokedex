@@ -1,0 +1,27 @@
+.circle_button {
+    all: unset;
+
+    height: 30px;
+    width: 30px;
+
+    background-color: var(--pokemon-cream-white);
+
+    padding: 5px;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.circle_button>img{
+    height: 24px;
+}
+
+.circle_button:hover,
+.circle_button:focus-visible {
+    outline: 1px solid black;
+}

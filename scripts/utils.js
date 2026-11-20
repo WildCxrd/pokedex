@@ -184,6 +184,6 @@ async function downloadAndRenderNextPokemon() {
 }
 
 function calculateNextPokemonOffset() {
-    const lastPokemonInCache = POKEMON_CACHE[POKEMON_CACHE.length - 1];
+    const lastPokemonInCache = getLastPokemonInCache();
     return lastPokemonInCache.id + 1;
 }

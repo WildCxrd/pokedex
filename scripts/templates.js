@@ -2,7 +2,9 @@ function getPokemonWithOneTypeCardTemplate(imgSrc, pokemonId, pokedexNumber, pok
     return `
         <article class="pokemon_card" onclick="showPokemonDetailsDialogAsync(${pokemonId})" tabindex=0>
             <div class="pokemon_image_wrapper">
+           
                 <img id="pokemonImage" src="${imgSrc}" alt="The pokemon ${pokemonName}" class="type_${pokemonPrimaryTypeName}">
+      
             </div>
             <p id="pokedexNumber">Nr. ${pokedexNumber}</p>
             <h2 id="pokemonName">${pokemonName}</h2>
@@ -46,7 +48,7 @@ function getEmptyFilterResultsTemplate() {
 
 function getPokemonGenderButtonTemplate(genderId, genderName, imgSrc, imgAlt) {
     return `
-        <button id="${genderName}GenderButton" class="gender_button circle_button" onclick="changeGender(${genderId})">
+        <button id="${genderName}GenderButton" class="circle_button" onclick="changeGender(${genderId})">
             <img src="${imgSrc}" alt="${imgAlt}">
         </button>
     `;
@@ -56,7 +58,7 @@ function getPokemonAbilityTemplate(abilityName, abilityEffectText) {
     return `
         <div class="pokemon_ability_wrapper">
             <p class="pokemon_ability">${abilityName}</p>
-            <button class="question_mark_button circle_button" onclick="showAbilityDetailsOverlay('${abilityName}')">
+            <button class="question_mark_button" onclick="showAbilityDetailsOverlay('${abilityName}')">
                 <img src="../assets/icons/question_mark.png" alt="A question mark.">
             </button>
             <div id="abilityDetailsOverlay_${abilityName}" class="ability_details_overlay ability_${abilityName}">
