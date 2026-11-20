@@ -19,11 +19,11 @@ function closePokemonDetailsLoaderDialog() {
     closeDelayedDialog("pokemonDetailsLoaderDialog");
 }
 
-function showDelayedDialogModal(dialogName) {
+function showDelayedDialogModal(dialogName, delayMilliseconds = TIMER_DELAY_MILLISECONDS) {
     timer = setTimeout(function () {
         const dialog = document.getElementById(dialogName.toString());
         dialog.showModal();
-    }, TIMER_DELAY_MILLISECONDS);
+    }, delayMilliseconds);
 }
 
 function closeDelayedDialog(dialogName) {
