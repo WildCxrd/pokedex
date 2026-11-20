@@ -13,7 +13,7 @@
 #pokemonFlavorText {
     background-color: var(--pokemon-cream-white);
 
-    padding: 20px;
+    padding: var(--detail-card-padding);
 
     border-radius: var(--detail-card-border-radius);
 }
@@ -31,12 +31,32 @@
     gap: 6px;
 }
 
+#pokemonStatsTable {
+    width: 100%;
+
+    border-spacing: 0px 2px;
+}
+
+#pokemonStatsTable th {
+    font-weight: bold;
+    text-align: left;
+    text-transform: capitalize;
+}
+
+#pokemonStatsTable td {
+    text-align: right;
+}
+
+#pokemonStatsTable tr.uneven_index {
+    background-color: white;
+}
+
 .pokemon_details_dialog {
     max-width: 400px;
 
     background-color: white;
 
-    padding: 20px;
+    padding: var(--detail-card-padding);
 
     border-radius: var(--detail-card-border-radius);
 
@@ -77,7 +97,7 @@
 .pokemon_details_wrapper {
     background-color: var(--pokemon-blue);
 
-    padding: 20px;
+    padding: var(--detail-card-padding);
 
     border-radius: var(--detail-card-border-radius);
 
@@ -152,7 +172,7 @@
 
     opacity: 0;
 
-    padding: 20px;
+    padding: var(--detail-card-padding);
 
     display: flex;
     flex-direction: column;
@@ -209,4 +229,20 @@
 .ability_details_overlay_close_button:focus-visible {
     background-color: darkgray;
     outline: 1px solid black;
+}
+
+.stats_wrapper {
+    background-color: var(--pokemon-cream-white);
+
+    padding: var(--detail-card-padding);
+
+    border-radius: var(--detail-card-border-radius);
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stats_wrapper>label {
+    font-weight: bold;
 }

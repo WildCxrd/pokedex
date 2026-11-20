@@ -33,6 +33,7 @@ async function setPokemonDetailsDialogViewAsync(pokemonId) {
     setPokemonDetailsTexts(formattedPokedexNumber, currentPokemon.name, formattedPokemonFlavorText);
     setPokemonDetailsTypes(currentPokemon);
     setPokemonDetails(currentPokemon, pokemonGenderTemplates, pokemonAbilitiesTemplates);
+    setPokemonStats(currentPokemon);
 
     closePokemonDetailsLoaderDialog();
 }
@@ -90,6 +91,12 @@ function setPokemonDetails(pokemon, pokemonGenderTemplates, pokemonAbilitiesTemp
     pokemonWeight.innerHTML = getMetricWeight(pokemon.weight);
     pokemonGenderWrapper.innerHTML = pokemonGenderTemplates;
     pokemonAbilitiesWrapper.innerHTML = pokemonAbilitiesTemplates;
+}
+
+function setPokemonStats(pokemon) {
+    const pokemonStatsTable = document.getElementById("pokemonStatsTable");
+    const statsTemplates = getPokemonStatsTemplates(pokemon.stats);
+    pokemonStatsTable.innerHTML = statsTemplates;
 }
 
 function showAbilityDetailsOverlay(abilityName) {

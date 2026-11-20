@@ -6,6 +6,7 @@
   --pokemon-blue-hover: rgb(27, 130, 177);
   --pokemon-cream-white: rgb(238, 230, 230);
 
+  --detail-card-padding: 20px;
   --detail-card-border-radius: 20px;
 
   --type-color-bug: rgb(114, 159, 63);

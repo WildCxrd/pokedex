@@ -80,6 +80,23 @@ function getPokemonGenderTemplates(pokemonGenders) {
     return genderTemplates;
 }
 
+function getPokemonStatsTemplates(pokemonStats) {
+    let statsTemplates = "";
+
+    for (let index = 0; index < pokemonStats.length; index++) {
+        const stat = pokemonStats[index];
+        const formattedStatName = getFormattedStatName(stat.stat.name);
+
+        if (index % 2 != 0) {
+            statsTemplates += getPokemonStatTableRowTemplate(formattedStatName, stat.base_stat);
+        } else {
+            statsTemplates += getPokemonStatUnevenIndexTableRowTemplate(formattedStatName, stat.base_stat);
+        }
+    }
+
+    return statsTemplates;
+}
+
 function getPokemonGenders(pokemon) {
     // see: https://pokeapi.co/docs/v2#genders
     const genders = [];
@@ -133,6 +150,10 @@ async function getAbilityEffectTextAsync(ability, languageAbbreviation = "en") {
 function getFormattedPokedexNumber(pokemonId) {
     const pokedexNumberMaxLength = pokemonTotalCount.toString().length;
     return pokemonId.toString().padStart(pokedexNumberMaxLength, 0);
+}
+
+function getFormattedStatName(statName) {
+    return statName.replace("-", " ");
 }
 
 function getMetricHeight(pokemonHeight) {

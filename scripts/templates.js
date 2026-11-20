@@ -77,3 +77,21 @@ function getPokemonAbilityTemplate(abilityName, abilityEffectText) {
 function getTypesBackgroundLineGradientTemplate(firstColor, secondColor) {
     return `linear-gradient(45deg, ${firstColor} 40%, ${secondColor} 60%)`;
 }
+
+function getPokemonStatTableRowTemplate(statName, statBaseStat) {
+    return `
+        <tr>
+            <th>${statName}</th>
+            <td>${statBaseStat}</td>
+        </tr>
+    `;
+}
+
+function getPokemonStatUnevenIndexTableRowTemplate(statName, statBaseStat) {
+    return `
+        <tr class="uneven_index">
+            <th>${statName}</th>
+            <td>${statBaseStat}</td>
+        </tr>
+    `;
+}
