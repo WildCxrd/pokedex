@@ -58,8 +58,9 @@
 
             <button id="loadPokemonButton" onclick="downloadAndRenderNextPokemon()">
                 <p>Load next</p>
-                <input id="loadPokemonInput" type="number" value="20" min="1" onclick="loadPokemonInputClicked(event)">
-                 <p>Pokémon</p>
+                <input id="loadPokemonInput" type="number" value="20" min="1"
+                    onclick="loadPokemonInputClicked(event)" onkeypress="loadPokemonInputKeyPressed(event)">
+                <p>Pokémon</p>
             </button>
 
         </section>
