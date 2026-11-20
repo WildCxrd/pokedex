@@ -6,11 +6,10 @@ async function renderPokemonCardsFromCacheAsync() {
 }
 
 async function renderPokemonCardsAsync(pokemonArray) {
-    showMainListLoader();
-    toggleFilterDisabled();
-
     const pokemonCardsWrapper = document.getElementById("pokemonCardsWrapper");
     let pokemonCardsSectionContent = "";
+
+    prepareViewBeforeRendering();
 
     currentlyVisiblePokemon = pokemonArray.toSorted((p1, p2) => p1.id - p2.id);
 
@@ -22,10 +21,20 @@ async function renderPokemonCardsAsync(pokemonArray) {
         pokemonCardsSectionContent = getEmptyFilterResultsTemplate();
     }
 
-    pokemonCardsWrapper.innerHTML = "";
     pokemonCardsWrapper.innerHTML = pokemonCardsSectionContent;
 
+    restoreViewAfterRendering();
+}
+
+function prepareViewBeforeRendering() {
+    showMainListLoader();
+    toggleFilterDisabled();
+    setLoadPokemonInputWrapperDisplay("none");
+}
+
+function restoreViewAfterRendering() {
     closeMainListLoader();
+    setLoadPokemonInputWrapperDisplay("flex");
     toggleFilterDisabled();
 }
 
@@ -35,4 +44,9 @@ function toggleFilterDisabled() {
 
     filterInput.disabled = !filterInput.disabled;
     filterButton.disabled = !filterButton.disabled;
+}
+
+function setLoadPokemonInputWrapperDisplay(displayValue) {
+    const loadPokemonInputWrapper = document.getElementById("loadPokemonInputWrapper");
+    loadPokemonInputWrapper.style.setProperty("display", displayValue);
 }

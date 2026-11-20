@@ -54,6 +54,12 @@
             <div id="mainListLoader" class="loader">
                 <img src="assets/icons/pokeball.svg" alt="A pokeball.">
             </div>
+
+            <div id="loadPokemonInputWrapper" class="load_pokemon_input_wrapper">
+                <input id="loadPokemonInput" type="number" value="20" min="1">
+                <button id="loadPokemonButton" onclick="downloadAndRenderNextPokemon()">load more</button>
+            </div>
+
         </section>
 
         <dialog id="pokemonDetailsLoaderDialog" class="loader_dialog" disabled>

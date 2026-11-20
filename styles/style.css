@@ -103,6 +103,9 @@ a {
     padding: 2em max(50px, var(--content-limitation-calculation));
 
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
 
     position: relative;
 }
@@ -115,6 +118,35 @@ a {
     align-items: center;
     flex-wrap: wrap;
     gap: 2em;
+}
+
+.load_pokemon_input_wrapper {
+    display: none;
+    gap: 5px;
+}
+
+.load_pokemon_input_wrapper>input {
+    width: 80px;
+
+    font-family: 'Lato';
+    font-weight: bold;
+
+    padding: 10px;
+
+    border: 2px solid var(--pokemon-red);
+    border-radius: 20px;
+}
+
+.load_pokemon_input_wrapper>button {
+    font-family: 'Lato';
+    font-weight: bold;
+
+    padding: 10px;
+
+    border: 2px solid black;
+    border-radius: 10px;
+
+    cursor: pointer;
 }
 
 .empty_filter_results {

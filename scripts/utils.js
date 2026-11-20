@@ -170,3 +170,20 @@ async function cacheNotExistingPokemonDataAsync(pokemon) {
         pokemon.genders_cache = getPokemonGenders(pokemon);
     }
 }
+
+async function downloadAndRenderNextPokemon() {
+    const loadPokemonInput = document.getElementById("loadPokemonInput");
+
+    if (loadPokemonInput.value > 0) {
+        prepareViewBeforeRendering();
+        const offset = calculateNextPokemonOffset();
+        const nextPokemon = await downloadPokemonRangeAsync(offset, loadPokemonInput.value);
+        savePokemonsInCache(nextPokemon);
+        await renderPokemonCardsFromCacheAsync();
+    }
+}
+
+function calculateNextPokemonOffset() {
+    const lastPokemonInCache = POKEMON_CACHE[POKEMON_CACHE.length - 1];
+    return lastPokemonInCache.id + 1;
+}

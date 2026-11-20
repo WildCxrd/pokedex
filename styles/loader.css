@@ -6,10 +6,6 @@
 
 .loader.open {
     display: flex;
-
-    position: absolute;
-    top: calc(50% - 50px);
-    left: calc(50% - 50px);
 }
 
 .loader_dialog[open] {
