@@ -16,7 +16,7 @@ async function renderPokemonCardsAsync(pokemonArray) {
     if (currentlyVisiblePokemon.length > 0) {
         const imagePreloadPromises = currentlyVisiblePokemon.map((pokemon) => preloadImagesAsync(pokemon.sprites.other["official-artwork"].front_default));
         await Promise.all(imagePreloadPromises);
-        pokemonCardsSectionContent = getPokemonCardTemplates(currentlyVisiblePokemon);
+        pokemonCardsSectionContent = await getPokemonCardTemplatesAsync(currentlyVisiblePokemon);
     } else {
         pokemonCardsSectionContent = getEmptyFilterResultsTemplate();
     }

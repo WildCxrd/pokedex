@@ -1,17 +1,18 @@
-function getPokemonCardTemplates(pokemonArray) {
+async function getPokemonCardTemplatesAsync(pokemonArray) {
     let pokemonCardTemplates = "";
 
     for (const pokemon of pokemonArray) {
         const pokemonTypeTemplates = getPokemonTypeTemplates(pokemon.types);
         let pokemonCardTemplate;
+        const mainImageSrc = await getExistingImageOrPlaceholderSrc(pokemon.sprites.other["official-artwork"].front_default);
 
         if (pokemon.types.length < 2) {
-            pokemonCardTemplate = getPokemonWithOneTypeCardTemplate(pokemon.sprites.other["official-artwork"].front_default,
+            pokemonCardTemplate = getPokemonWithOneTypeCardTemplate(mainImageSrc,
                 pokemon.id, getFormattedPokedexNumber(pokemon.id), pokemon.name, pokemon.types[0].type.name, pokemonTypeTemplates);
         }
         else {
             const typesBackgroundGradient = getTypesBackgroundGradient(pokemon.types[0].type.name, pokemon.types[1].type.name);
-            pokemonCardTemplate = getPokemonWithMultipleTypesCardTemplate(pokemon.sprites.other["official-artwork"].front_default,
+            pokemonCardTemplate = getPokemonWithMultipleTypesCardTemplate(mainImageSrc,
                 pokemon.id, getFormattedPokedexNumber(pokemon.id), pokemon.name, typesBackgroundGradient, pokemonTypeTemplates);
         }
 
@@ -181,6 +182,14 @@ async function preloadImagesAsync(...imageUrls) {
     }
 
     await Promise.all(imageDownloads);
+}
+
+function getExistingImageOrPlaceholderSrc(imgSrc) {
+    if (imgSrc == null) {
+        return "../assets/img/pokemon_question_mark.png";
+    } else {
+        return imgSrc;
+    }
 }
 
 async function cacheNotExistingPokemonDataAsync(pokemon) {

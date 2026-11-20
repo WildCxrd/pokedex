@@ -1,8 +1,1 @@
 2. Hover und Cursor für alle Buttons überprüfen.
-
-3. Pokemon-Kartenbreite und höhe sollten fix sein. Wie mit overlap umgehen?
-
-4. Pokedex-IDs sind ab 1026 falsch?
-
-5. Es gibt Pokemon ohne artwork. Stattdessen dann was anzeigen?
-    Beispiel: Koraidon-Swimming-Build

@@ -71,7 +71,7 @@ function setPokemonDetailsTexts(formattedPokemonId, pokemonName, pokemonFlavorTe
 async function setPokemonDetailsImagesAsync(pokemon, pokemonGenders) {
     const detailsPokemonMainImage = document.getElementById("detailsPokemonMainImage");
     await preloadGenderImagesAsync(pokemon, pokemonGenders);
-    detailsPokemonMainImage.src = pokemon.sprites.other["official-artwork"].front_default;
+    detailsPokemonMainImage.src = await getExistingImageOrPlaceholderSrc(pokemon.sprites.other["official-artwork"].front_default);
 }
 
 function setPokemonDetailsTypes(pokemon) {
@@ -112,10 +112,14 @@ function closeAbilityDetailsOverlay(abilityName) {
 async function preloadGenderImagesAsync(pokemon, pokemonGenders) {
     const imagePreloads = [];
     if (pokemon.species_cache.has_gender_differences && pokemonGenders.find(g => g.id == FEMALE_GENDER_VALUE)) {
-        imagePreloads.push(preloadImagesAsync(pokemon.sprites.front_female, pokemon.sprites.back_female));
+        const frontFemaleImgSrc = getExistingImageOrPlaceholderSrc(pokemon.sprites.front_female);
+        const backFemaleImgSrc = getExistingImageOrPlaceholderSrc(pokemon.sprites.back_female);
+        imagePreloads.push(preloadImagesAsync(frontFemaleImgSrc, backFemaleImgSrc));
     }
     if (pokemonGenders.find(g => g.id == MALE_GENDER_VALUE)) {
-        imagePreloads.push(preloadImagesAsync(pokemon.sprites.front_default, pokemon.sprites.back_default));
+        const frontDefaultImgSrc = getExistingImageOrPlaceholderSrc(pokemon.sprites.front_default);
+        const backDefaultImgSrc = getExistingImageOrPlaceholderSrc(pokemon.sprites.back_default);
+        imagePreloads.push(preloadImagesAsync(frontDefaultImgSrc, backDefaultImgSrc));
     }
     await Promise.all(imagePreloads);
 }
@@ -123,10 +127,10 @@ async function preloadGenderImagesAsync(pokemon, pokemonGenders) {
 function changeGender(genderId) {
     switch (genderId) {
         case currentPokemon.species_cache.has_gender_differences && FEMALE_GENDER_VALUE:
-            detailsPokemonMainImage.src = currentPokemon.sprites.front_female;
+            detailsPokemonMainImage.src = getExistingImageOrPlaceholderSrc(currentPokemon.sprites.front_female);
             break;
         default:
-            detailsPokemonMainImage.src = currentPokemon.sprites.front_default;
+            detailsPokemonMainImage.src = getExistingImageOrPlaceholderSrc(currentPokemon.sprites.front_default);
             break;
     }
 }
