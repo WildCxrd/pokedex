@@ -27,15 +27,21 @@ async function renderPokemonCardsAsync(pokemonArray) {
 }
 
 function prepareViewBeforeRendering() {
+    const pokemonCardsWrapper = document.getElementById("pokemonCardsWrapper");
+    pokemonCardsWrapper.style.setProperty("height", "unset");
+
     showMainListLoader();
     setFilterDisabled(true);
     setLoadPokemonButtonDisplay("none");
 }
 
 function restoreViewAfterRendering() {
+    const pokemonCardsWrapper = document.getElementById("pokemonCardsWrapper");
+
     closeMainListLoader();
-     setFilterDisabled(false);
+    setFilterDisabled(false);
     setLoadPokemonButtonDisplay("flex");
+    pokemonCardsWrapper.style.setProperty("height", "100%");
 }
 
 function setFilterDisabled(disableFilter) {
