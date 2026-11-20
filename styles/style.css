@@ -174,6 +174,10 @@ a {
     height: 250px;
 }
 
+.scroll_to_top_link {
+    align-self: flex-end;
+}
+
 .page_footer {
     width: 100%;
 
