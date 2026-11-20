@@ -5,6 +5,7 @@ async function filterPokemonCardsAsync() {
     if (filterInputTrimmedValue != "") {
         const filteredPokemon = filterPokemon(POKEMON_CACHE, filterInputTrimmedValue);
         await renderPokemonCardsAsync(filteredPokemon);
+        setLoadPokemonButtonDisplay("none");
     } else {
         await renderPokemonCardsFromCacheAsync();
     }
