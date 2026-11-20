@@ -28,8 +28,8 @@ async function setPokemonDetailsDialogViewAsync(pokemonId) {
     const pokemonGenderTemplates = getPokemonGenderTemplates(currentPokemon.genders_cache);
     const pokemonAbilitiesTemplates = await getPokemonAbilitiesTemplatesAsync(currentPokemon.abilities);
 
-    setPokemonImageWrapperBackground(currentPokemon);
     await setPokemonDetailsImagesAsync(currentPokemon, currentPokemon.genders_cache);
+    setPokemonImageWrapperBackground(currentPokemon);
     setPokemonDetailsTexts(formattedPokedexNumber, currentPokemon.name, formattedPokemonFlavorText);
     setPokemonDetailsTypes(currentPokemon);
     setPokemonDetails(currentPokemon, pokemonGenderTemplates, pokemonAbilitiesTemplates);

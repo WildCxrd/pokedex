@@ -1,4 +1,4 @@
-const TIMER_DELAY_MILLISECONDS = 400;
+const TIMER_DELAY_MILLISECONDS = 255;
 let timer;
 
 function showMainListLoader() {
