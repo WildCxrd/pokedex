@@ -140,7 +140,7 @@ async function getAbilityEffectTextAsync(ability, languageAbbreviation = "en") {
 
     for (const effectEntry of abilityInCache.effect_entries) {
         if (effectEntry.language.name == languageAbbreviation) {
-            effectText = effectEntry.effect;
+            effectText = effectEntry.short_effect;
             break;
         }
     }
