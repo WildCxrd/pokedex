@@ -1,9 +1,3 @@
-async function filterPokemonCardsOnEnterAsync(event) {
-    if (event.key === "Enter") {
-        await filterPokemonCardsAsync();
-    }
-}
-
 async function filterPokemonCardsAsync() {
     const filterInput = document.getElementById("filterInput");
     const filterInputTrimmedValue = filterInput.value.trim();
