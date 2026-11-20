@@ -19,6 +19,10 @@
     background-color: var(--type-color-dark);
 }
 
+.type_dragon {
+    background-color: var(--type-color-dragon);
+}
+
 .type_electric {
     background-color: var(--type-color-electric);
 }
@@ -39,6 +43,11 @@
 
 .type_flying {
     background-color: var(--type-color-flying);
+}
+
+.type_ghost{
+    color: white;
+    background-color: var(--type-color-ghost);
 }
 
 .type_grass {
