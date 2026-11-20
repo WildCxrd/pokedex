@@ -1,6 +1,6 @@
 function getPokemonWithOneTypeCardTemplate(imgSrc, pokemonId, pokedexNumber, pokemonName, pokemonPrimaryTypeName, pokemonTypesTemplate) {
     return `
-        <article class="pokemon_card" onclick="showPokemonDetailsDialogAsync(${pokemonId})">
+        <article class="pokemon_card" onclick="showPokemonDetailsDialogAsync(${pokemonId})" tabindex=0>
             <div class="pokemon_image_wrapper">
                 <img id="pokemonImage" src="${imgSrc}" alt="The pokemon ${pokemonName}" class="type_${pokemonPrimaryTypeName}">
             </div>
@@ -15,7 +15,8 @@ function getPokemonWithOneTypeCardTemplate(imgSrc, pokemonId, pokedexNumber, pok
 
 function getPokemonWithMultipleTypesCardTemplate(imgSrc, pokemonId, pokedexNumber, pokemonName, typesBackgroundGradient, pokemonTypesTemplate) {
     return `
-        <article class="pokemon_card" onclick="showPokemonDetailsDialogAsync(${pokemonId})">
+        <article class="pokemon_card" onclick="showPokemonDetailsDialogAsync(${pokemonId})" 
+                                      onkeypress="showPokemonDetailsDialogOnKeyPressedAsync(event, ${pokemonId})" tabindex=0>
             <div class="pokemon_image_wrapper">
                 <img id="pokemonImage" src="${imgSrc}" alt="The pokemon ${pokemonName}" style="background: ${typesBackgroundGradient}">
             </div>

@@ -32,7 +32,10 @@
     cursor: pointer;
 }
 
-.pokemon_card:hover{
+.pokemon_card:hover,
+.pokemon_card:focus-visible {
+    outline: 4px solid black;
+
     transform-origin: bottom;
     animation: pop 255ms;
 }
