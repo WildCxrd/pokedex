@@ -23,7 +23,7 @@ async function setPokemonDetailsDialogViewAsync(pokemonId) {
     await cacheNotExistingPokemonDataAsync(currentPokemon);
 
     const formattedPokedexNumber = getFormattedPokedexNumber(currentPokemon.id);
-    const formattedPokemonFlavorText = cleanText(currentPokemon.species_cache.flavor_text_entries[0].flavor_text);
+    const formattedPokemonFlavorText = cleanText(getFirstEnglishFlavorText(currentPokemon.species_cache.flavor_text_entries));
 
     const pokemonGenderTemplates = getPokemonGenderTemplates(currentPokemon.genders_cache);
     const pokemonAbilitiesTemplates = await getPokemonAbilitiesTemplatesAsync(currentPokemon.abilities);
@@ -129,4 +129,9 @@ function changeGender(genderId) {
             detailsPokemonMainImage.src = currentPokemon.sprites.front_default;
             break;
     }
+}
+
+function getFirstEnglishFlavorText(flavorTextEntries)
+{
+    return flavorTextEntries.find(entry => entry.language.name == "en").flavor_text;
 }

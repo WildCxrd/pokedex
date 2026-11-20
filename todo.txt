@@ -1,6 +1,3 @@
-1. Manche flavor texts sind plötzlich auf japanisch? --> Immer den ersten englischen Text nehmen,
-    Beispiel: Zygarde
-
 2. Hover und Cursor für alle Buttons überprüfen.
 
 3. Pokemon-Kartenbreite und höhe sollten fix sein. Wie mit overlap umgehen?
