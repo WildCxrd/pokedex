@@ -1,3 +1,40 @@
+#loadPokemonButton {
+    color: white;
+    background-color: var(--pokemon-blue);
+
+    font-family: 'Lato';
+    font-weight: bold;
+    font-size: 1.25rem;
+
+    padding: 10px;
+
+    border: 2px solid black;
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    display: none;
+    align-items: center;
+    gap: 5px;
+}
+
+#loadPokemonButton>input {
+    width: 80px;
+
+    font-family: 'Lato';
+    font-weight: bold;
+    font-size: 1.25rem;
+
+    padding: 2px 10px;
+
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+#loadPokemonButton:hover {
+    background-color: var(--pokemon-blue-hover);
+}
+
 body {
     min-height: 100dvh;
 
@@ -118,35 +155,6 @@ a {
     align-items: center;
     flex-wrap: wrap;
     gap: 2em;
-}
-
-.load_pokemon_input_wrapper {
-    display: none;
-    gap: 5px;
-}
-
-.load_pokemon_input_wrapper>input {
-    width: 80px;
-
-    font-family: 'Lato';
-    font-weight: bold;
-
-    padding: 10px;
-
-    border: 2px solid var(--pokemon-red);
-    border-radius: 20px;
-}
-
-.load_pokemon_input_wrapper>button {
-    font-family: 'Lato';
-    font-weight: bold;
-
-    padding: 10px;
-
-    border: 2px solid black;
-    border-radius: 10px;
-
-    cursor: pointer;
 }
 
 .empty_filter_results {

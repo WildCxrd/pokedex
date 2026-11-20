@@ -27,6 +27,7 @@
     <script src="scripts/filter.js"></script>
     <script src="scripts/pokemon_details_dialog.js"></script>
     <script src="scripts/loader.js"></script>
+    <script src="scripts/event_handler.js"></script>
 </head>
 
 <body onload="initializeAsync()">
@@ -55,10 +56,11 @@
                 <img src="assets/icons/pokeball.svg" alt="A pokeball.">
             </div>
 
-            <div id="loadPokemonInputWrapper" class="load_pokemon_input_wrapper">
-                <input id="loadPokemonInput" type="number" value="20" min="1">
-                <button id="loadPokemonButton" onclick="downloadAndRenderNextPokemon()">load more</button>
-            </div>
+            <button id="loadPokemonButton" onclick="downloadAndRenderNextPokemon()">
+                <p>Load next</p>
+                <input id="loadPokemonInput" type="number" value="20" min="1" onclick="loadPokemonInputClicked(event)">
+                 <p>Pokémon</p>
+            </button>
 
         </section>
 

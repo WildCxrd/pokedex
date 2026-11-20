@@ -2,6 +2,8 @@
   --content-limitation-calculation: calc(50% - 720px);
 
   --pokemon-red: rgba(237, 28, 35, 0.9);
+  --pokemon-blue: rgb(48, 167, 215);
+  --pokemon-blue-hover: rgb(27, 130, 177);
 
   --detail-card-border-radius: 20px;
 

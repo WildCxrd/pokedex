@@ -29,12 +29,12 @@ async function renderPokemonCardsAsync(pokemonArray) {
 function prepareViewBeforeRendering() {
     showMainListLoader();
     toggleFilterDisabled();
-    setLoadPokemonInputWrapperDisplay("none");
+    setLoadPokemonButtonDisplay("none");
 }
 
 function restoreViewAfterRendering() {
     closeMainListLoader();
-    setLoadPokemonInputWrapperDisplay("flex");
+    setLoadPokemonButtonDisplay("flex");
     toggleFilterDisabled();
 }
 
@@ -46,7 +46,7 @@ function toggleFilterDisabled() {
     filterButton.disabled = !filterButton.disabled;
 }
 
-function setLoadPokemonInputWrapperDisplay(displayValue) {
-    const loadPokemonInputWrapper = document.getElementById("loadPokemonInputWrapper");
-    loadPokemonInputWrapper.style.setProperty("display", displayValue);
+function setLoadPokemonButtonDisplay(displayValue) {
+    const loadPokemonButton = document.getElementById("loadPokemonButton");
+    loadPokemonButton.style.setProperty("display", displayValue);
 }

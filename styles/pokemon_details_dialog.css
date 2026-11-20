@@ -69,7 +69,7 @@
 }
 
 .pokemon_details_wrapper {
-    background-color: rgb(48, 167, 215);
+    background-color: var(--pokemon-blue);
 
     padding: 20px;
 
