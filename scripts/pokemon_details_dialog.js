@@ -135,7 +135,10 @@ function changeGender(genderId) {
     }
 }
 
-function getFirstEnglishFlavorText(flavorTextEntries)
-{
+function showOfficialArtwork() {
+    detailsPokemonMainImage.src = getExistingImageOrPlaceholderSrc(currentPokemon.sprites.other["official-artwork"].front_default);
+}
+
+function getFirstEnglishFlavorText(flavorTextEntries) {
     return flavorTextEntries.find(entry => entry.language.name == "en").flavor_text;
 }
