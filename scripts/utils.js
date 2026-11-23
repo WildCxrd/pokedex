@@ -210,10 +210,15 @@ async function downloadAndRenderNextPokemon() {
         const nextPokemon = await downloadPokemonRangeAsync(offset, loadPokemonInput.value);
         savePokemonsInCache(nextPokemon);
         await renderPokemonCardsFromCacheAsync();
+
+        if (pokemonTotalCount == currentlyVisiblePokemon.length) {
+            const loadPokemonButton = document.getElementById("loadPokemonButton");
+            loadPokemonButton.remove();
+        }
     }
 }
 
 function calculateNextPokemonOffset() {
     const lastPokemonInCache = getLastPokemonInCache();
-    return lastPokemonInCache.id + 1;
+    return lastPokemonInCache.id;
 }

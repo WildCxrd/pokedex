@@ -54,5 +54,8 @@ function setFilterDisabled(disableFilter) {
 
 function setLoadPokemonButtonDisplay(displayValue) {
     const loadPokemonButton = document.getElementById("loadPokemonButton");
-    loadPokemonButton.style.setProperty("display", displayValue);
+
+    if (loadPokemonButton != null) {
+        loadPokemonButton.style.setProperty("display", displayValue);
+    }
 }
