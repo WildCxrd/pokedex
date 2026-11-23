@@ -60,15 +60,15 @@ function getPokemonGenderTemplates(pokemonGenders) {
 
         switch (gender.id) {
             case FEMALE_GENDER_VALUE:
-                genderImgSrc = "../assets/icons/female.png"
+                genderImgSrc = "./assets/icons/female.png"
                 genderImgAlt = "A female symbol."
                 break;
             case MALE_GENDER_VALUE:
-                genderImgSrc = "../assets/icons/male.png"
+                genderImgSrc = "./assets/icons/male.png"
                 genderImgAlt = "A male symbol."
                 break;
             case GENDERLESS_GENDER_VALUE:
-                genderImgSrc = "../assets/icons/neutrum.png"
+                genderImgSrc = "./assets/icons/neutrum.png"
                 genderImgAlt = "A neutrum symbol."
                 break;
             default:
@@ -186,7 +186,7 @@ async function preloadImagesAsync(...imageUrls) {
 
 function getExistingImageOrPlaceholderSrc(imgSrc) {
     if (imgSrc == null) {
-        return "../assets/img/pokemon_question_mark.png";
+        return "./assets/img/pokemon_question_mark.png";
     } else {
         return imgSrc;
     }

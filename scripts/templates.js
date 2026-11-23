@@ -40,7 +40,7 @@ function getPokemonTypeTemplate(pokemonType, pokemonTypeDisplayName) {
 function getEmptyFilterResultsTemplate() {
     return `
         <div class="empty_filter_results">
-            <img src="../assets/img/prof_oak.png" alt="Prof. Oak holding a book.">
+            <img src="./assets/img/prof_oak.png" alt="Prof. Oak holding a book.">
             <h2>Hey! Wait! There are no Pokémon in the tall grass...</h2>
         <div>
     `;
@@ -59,13 +59,13 @@ function getPokemonAbilityTemplate(abilityName, abilityEffectText) {
         <div class="pokemon_ability_wrapper">
             <p class="pokemon_ability">${abilityName}</p>
             <button class="question_mark_button" onclick="showAbilityDetailsOverlay('${abilityName}')">
-                <img src="../assets/icons/question_mark.png" alt="A question mark.">
+                <img src="./assets/icons/question_mark.png" alt="A question mark.">
             </button>
             <div id="abilityDetailsOverlay_${abilityName}" class="ability_details_overlay ability_${abilityName}">
                 <header class="ability_details_overlay_header">
                     <h3>${abilityName}</h3>
                     <button class="ability_details_overlay_close_button" onclick="closeAbilityDetailsOverlay('${abilityName}')">
-                        <img src="../assets/icons/close.svg" alt="A cross.">
+                        <img src="./assets/icons/close.svg" alt="A cross.">
                     </button>
                 </header>
                 <p>${abilityEffectText}</p>
