@@ -39,11 +39,7 @@
 body {
     min-height: 100dvh;
 
-    background-color: black;
-
     font-family: 'Lato';
-
-    padding: 10px;
 
     display: flex;
     flex-direction: column;
@@ -72,9 +68,6 @@ a {
     background-color: var(--pokemon-red);
 
     padding: 20px max(50px, var(--content-limitation-calculation));
-
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
 
     display: flex;
     justify-content: space-between;
@@ -185,9 +178,6 @@ a {
     background-color: var(--pokemon-red);
 
     padding: 40px max(50px, var(--content-limitation-calculation));
-
-    border-bottom-left-radius: 50px;
-    border-bottom-right-radius: 50px;
 
     display: flex;
     justify-content: space-between;
