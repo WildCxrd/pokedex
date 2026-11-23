@@ -42,6 +42,12 @@ function restoreViewAfterRendering() {
     setFilterDisabled(false);
     setLoadPokemonButtonDisplay("flex");
     pokemonCardsWrapper.style.setProperty("height", "100%");
+
+    if (currentlyVisiblePokemon.length > 0) {
+        setScrollButtonsDisplay("unset");
+    } else {
+        setScrollButtonsDisplay("none");
+    }
 }
 
 function setFilterDisabled(disableFilter) {
@@ -58,6 +64,14 @@ function setLoadPokemonButtonDisplay(displayValue) {
     if (loadPokemonButton != null) {
         loadPokemonButton.style.setProperty("display", displayValue);
     }
+}
+
+function setScrollButtonsDisplay(displayValue) {
+    const scrollToBottomLink = document.getElementById("scrollToBottomLink");
+    const scrollToTopLink = document.getElementById("scrollToTopLink");
+
+    scrollToBottomLink.style.setProperty("display", displayValue);
+    scrollToTopLink.style.setProperty("display", displayValue);
 }
 
 function emptyCardsWrapper() {
