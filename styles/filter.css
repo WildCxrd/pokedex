@@ -4,7 +4,8 @@
 
 .filter_wrapper {
     height: 40px;
-    width: 30%;
+    width: 400px;
+    min-width: 0px;
 
     background-color: white;
 
@@ -52,11 +53,24 @@
 }
 
 .empty_filter_results {
+    width: 100%;
+    min-width: 0px;
+
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 50px;
 }
 
 .empty_filter_results>img {
     height: 250px;
+}
+
+.empty_filter_results>h2 {
+    margin-left: 25px;
+}
+
+@media screen and (max-width: 425px) {
+    .empty_filter_results>img {
+        height: 150px;
+    }
 }

@@ -245,19 +245,12 @@
     .details_dialog_pokemon_image_wrapper>img {
         height: 150px
     }
-/* 
-    .base_infos_wrapper {
-        flex-direction: column;
-        justify-content: start;
-        gap: 10px;
-    } */
 
     .name_and_types_wrapper {
         width: 100%;
     }
 
-    /* .gender_details {
-        width: 100%;
-        flex-direction: row;
-    } */
+    .gender_details{
+        align-self: flex-end;
+    }
 }

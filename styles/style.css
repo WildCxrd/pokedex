@@ -75,6 +75,7 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
 }
 
 .page_heading {
@@ -144,8 +145,24 @@ a {
         font-size: 1rem;
     }
 
+    .logo {
+        height: 40px;
+    }
+
+    .page_heading>h1 {
+        display: none;
+    }
+
+    .page_header {
+        padding: 10px;
+
+
+    }
+
     .page_footer {
+        padding: 10px;
+
         flex-direction: column;
-        gap: 10px;
+        gap: 5px;
     }
 }
