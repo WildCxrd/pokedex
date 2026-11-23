@@ -208,31 +208,6 @@
     overflow: auto;
 }
 
-.ability_details_overlay_close_button {
-    all: unset;
-
-    height: 15px;
-    width: 15px;
-
-    background-color: black;
-
-    padding: 5px;
-
-    border-radius: 5px;
-
-    display: flex;
-    justify-content: center;
-    align-self: flex-end;
-
-    cursor: pointer;
-}
-
-.ability_details_overlay_close_button:hover,
-.ability_details_overlay_close_button:focus-visible {
-    background-color: darkgray;
-    outline: 1px solid black;
-}
-
 .stats_wrapper {
     background-color: var(--pokemon-cream-white);
 

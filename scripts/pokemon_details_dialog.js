@@ -16,6 +16,11 @@ async function showNextPokemonDetailsAsync() {
     await setPokemonDetailsDialogViewAsync(nextPokemonId);
 }
 
+function closeDetailsDialog() {
+    const pokemonDetailsDialog = document.getElementById("pokemonDetailsDialog");
+    pokemonDetailsDialog.close();
+}
+
 async function setPokemonDetailsDialogViewAsync(pokemonId) {
     showPokemonDetailsLoaderDialog();
 

@@ -21,6 +21,31 @@
     height: 24px;
 }
 
+.close_button {
+    all: unset;
+
+    height: 15px;
+    width: 15px;
+
+    background-color: black;
+
+    padding: 5px;
+
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-self: flex-end;
+
+    cursor: pointer;
+}
+
+.close_button:hover,
+.close_button:focus-visible {
+    background-color: darkgray;
+    outline: 1px solid black;
+}
+
 .circle_button:hover,
 .circle_button:focus-visible {
     outline: 1px solid black;
