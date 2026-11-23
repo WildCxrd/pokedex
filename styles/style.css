@@ -119,6 +119,13 @@ a {
     align-self: flex-end;
 }
 
+.scroll_to_bottom_link {
+    align-self: flex-end;
+    rotate: 180deg;
+
+    position: fixed;
+}
+
 .page_footer {
     width: 100%;
 
