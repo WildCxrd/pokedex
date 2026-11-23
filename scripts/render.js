@@ -59,3 +59,10 @@ function setLoadPokemonButtonDisplay(displayValue) {
         loadPokemonButton.style.setProperty("display", displayValue);
     }
 }
+
+function emptyCardsWrapper() {
+    const pokemonCardsWrapper = document.getElementById("pokemonCardsWrapper");
+    if (pokemonCardsWrapper != null) {
+        pokemonCardsWrapper.innerHTML = "";
+    }
+}

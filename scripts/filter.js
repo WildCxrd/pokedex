@@ -7,6 +7,7 @@ async function filterPokemonCardsAsync() {
         await renderPokemonCardsAsync(filteredPokemon);
         setLoadPokemonButtonDisplay("none");
     } else {
+        emptyCardsWrapper();
         await renderPokemonCardsFromCacheAsync();
     }
 }
