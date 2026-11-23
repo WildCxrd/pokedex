@@ -113,9 +113,6 @@
 
     border-radius: var(--detail-card-border-radius);
 
-    overflow: hidden;
-    flex-wrap: wrap;
-
     display: flex;
     justify-content: space-around;
 
@@ -186,6 +183,8 @@
 
     padding: var(--detail-card-padding);
 
+    border-radius: var(--detail-card-border-radius);
+
     display: flex;
     flex-direction: column;
     gap: 5%;
@@ -232,4 +231,33 @@
 
 .stats_wrapper>label {
     font-weight: bold;
+}
+
+@media screen and (max-width: 425px) {
+    .pokemon_details_dialog {
+        width: 300px;
+    }
+
+    .details_dialog_pokemon_image_wrapper {
+        height: 150px;
+    }
+
+    .details_dialog_pokemon_image_wrapper>img {
+        height: 150px
+    }
+/* 
+    .base_infos_wrapper {
+        flex-direction: column;
+        justify-content: start;
+        gap: 10px;
+    } */
+
+    .name_and_types_wrapper {
+        width: 100%;
+    }
+
+    /* .gender_details {
+        width: 100%;
+        flex-direction: row;
+    } */
 }

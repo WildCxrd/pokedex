@@ -70,7 +70,7 @@ a {
     color: white;
     background-color: var(--pokemon-red);
 
-    padding: 20px max(50px, var(--content-limitation-calculation));
+    padding: 20px max(20px, var(--content-limitation-calculation));
 
     display: flex;
     justify-content: space-between;
@@ -92,7 +92,7 @@ a {
 .cards_section {
     width: 100%;
 
-    padding: 2em max(50px, var(--content-limitation-calculation));
+    padding: 2em max(20px, var(--content-limitation-calculation));
 
     display: flex;
     flex-direction: column;
@@ -124,9 +124,28 @@ a {
     color: white;
     background-color: var(--pokemon-red);
 
-    padding: 40px max(50px, var(--content-limitation-calculation));
+    padding: 40px max(20px, var(--content-limitation-calculation));
 
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+@media screen and (max-width: 425px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    #loadPokemonButton {
+        font-size: 1rem;
+    }
+
+    .page_footer {
+        flex-direction: column;
+        gap: 10px;
+    }
 }

@@ -17,8 +17,8 @@
     cursor: pointer;
 }
 
-.circle_button>img{
-    height: 24px;
+.circle_button>img {
+    height: 100%;
 }
 
 .close_button {
@@ -49,4 +49,11 @@
 .circle_button:hover,
 .circle_button:focus-visible {
     outline: 1px solid black;
+}
+
+@media screen and (max-width: 425px) {
+    .circle_button {
+        height: 20px;
+        width: 20px;
+    }
 }
