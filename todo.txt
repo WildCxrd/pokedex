@@ -1,1 +1,0 @@
-2. Hover und Cursor für alle Buttons überprüfen.
