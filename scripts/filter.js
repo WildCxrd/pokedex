@@ -6,9 +6,11 @@ async function filterPokemonCardsAsync() {
         const filteredPokemon = filterPokemon(POKEMON_CACHE, filterInputTrimmedValue);
         await renderPokemonCardsAsync(filteredPokemon);
         setLoadPokemonButtonDisplay("none");
+        setEmptyFilterButtonsDisplay(true);
     } else {
         emptyCardsWrapper();
         await renderPokemonCardsFromCacheAsync();
+        setEmptyFilterButtonsDisplay(false);
     }
 }
 
@@ -39,4 +41,24 @@ function pokemonNameMatches(pokemon, string) {
     return nameMatches != null ||
         idMatches != null ||
         allTypeMatches.length > 0;
+}
+
+function setEmptyFilterButtonsDisplay(isCurrentlyFiltered) {
+    const emptyFilterButton = document.getElementById("emptyFilterButton");
+
+    switch (isCurrentlyFiltered) {
+        case false:
+            emptyFilterButton.style.removeProperty("display");
+            break;
+        default:
+            emptyFilterButton.style.setProperty("display", "flex");
+            break;
+    }
+}
+
+async function emptyFilterAsync() {
+    const filterInput = document.getElementById("filterInput");
+    filterInput.value = "";
+
+    await filterPokemonCardsAsync();
 }

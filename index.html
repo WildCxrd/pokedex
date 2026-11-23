@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="styles/pokemon_types.css">
     <link rel="stylesheet" href="styles/pokemon_details_dialog.css">
     <link rel="stylesheet" href="styles/loader.css">
+    <link rel="stylesheet" href="styles/filter.css">
 
 
     <link rel="shortcut icon" href="assets/icons/red-team.png" type="image/x-icon">
@@ -44,6 +45,9 @@
                 onkeypress="filterPokemonCardsOnEnterAsync(event)">
             <button id="filterButton" onclick="filterPokemonCardsAsync()">
                 <img src="assets/icons/magnifying-glass.svg" alt="A magnifying glass.">
+            </button>
+            <button id="emptyFilterButton" onclick="emptyFilterAsync()">
+                <img src="./assets/icons/close.svg" alt="A cross.">
             </button>
         </div>
     </header>
