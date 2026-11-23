@@ -27,12 +27,14 @@ function filterPokemon(pokemonArray, filterString) {
 }
 
 function pokemonNameMatches(pokemon, string) {
-    const nameMatches = pokemon.name.match(string);
-    const idMatches = pokemon.id.toString().match(string);
+    const lowerString = string.toLowerCase();
+
+    const nameMatches = pokemon.name.match(lowerString);
+    const idMatches = pokemon.id.toString().match(lowerString);
     const allTypeMatches = [];
 
     pokemon.types.forEach(type => {
-        let typeMatches = type.type.name.match(string);
+        let typeMatches = type.type.name.match(lowerString);
         if (typeMatches != null) {
             allTypeMatches.push(typeMatches);
         }
