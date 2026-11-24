@@ -6,7 +6,7 @@ async function renderPokemonCardsFromCacheAsync() {
 }
 
 async function renderPokemonCardsAsync(pokemonArray) {
-    const pokemonCardsWrapper = document.getElementById("pokemonCardsWrapper");
+    const pokemonCardsList = document.getElementById("pokemonCardsList");
     let pokemonCardsSectionContent = "";
 
     prepareViewBeforeRendering();
@@ -21,14 +21,14 @@ async function renderPokemonCardsAsync(pokemonArray) {
         pokemonCardsSectionContent = getEmptyFilterResultsTemplate();
     }
 
-    pokemonCardsWrapper.innerHTML = pokemonCardsSectionContent;
+    pokemonCardsList.innerHTML = pokemonCardsSectionContent;
 
     restoreViewAfterRendering();
 }
 
 function prepareViewBeforeRendering() {
-    const pokemonCardsWrapper = document.getElementById("pokemonCardsWrapper");
-    pokemonCardsWrapper.style.setProperty("height", "unset");
+    const pokemonCardsList = document.getElementById("pokemonCardsList");
+    pokemonCardsList.style.setProperty("height", "unset");
 
     showMainListLoader();
     setFilterDisabled(true);
@@ -36,12 +36,12 @@ function prepareViewBeforeRendering() {
 }
 
 function restoreViewAfterRendering() {
-    const pokemonCardsWrapper = document.getElementById("pokemonCardsWrapper");
+    const pokemonCardsList = document.getElementById("pokemonCardsList");
 
     closeMainListLoader();
     setFilterDisabled(false);
     setLoadPokemonButtonDisplay("flex");
-    pokemonCardsWrapper.style.setProperty("height", "100%");
+    pokemonCardsList.style.setProperty("height", "100%");
 
     if (currentlyVisiblePokemon.length > 0) {
         setScrollButtonsDisplay("unset");
@@ -75,8 +75,8 @@ function setScrollButtonsDisplay(displayValue) {
 }
 
 function emptyCardsWrapper() {
-    const pokemonCardsWrapper = document.getElementById("pokemonCardsWrapper");
-    if (pokemonCardsWrapper != null) {
-        pokemonCardsWrapper.innerHTML = "";
+    const pokemonCardsList = document.getElementById("pokemonCardsList");
+    if (pokemonCardsList != null) {
+        pokemonCardsList.innerHTML = "";
     }
 }
