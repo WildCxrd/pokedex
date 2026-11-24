@@ -46,7 +46,7 @@ function getEmptyFilterResultsTemplate() {
 
 function getPokemonGenderButtonTemplate(genderId, genderName, imgSrc, imgAlt) {
     return `
-        <button id="${genderName}GenderButton" class="circle_button" onclick="changeGender(${genderId})">
+        <button id="${genderName}GenderButton" aria-label="Switch to ${genderName} gender image" class="circle_button" onclick="changeGender(${genderId})">
             <img src="${imgSrc}" alt="${imgAlt}">
         </button>
     `;
@@ -56,13 +56,13 @@ function getPokemonAbilityTemplate(abilityName, abilityEffectText) {
     return `
         <div class="pokemon_ability_wrapper">
             <p class="pokemon_ability">${abilityName}</p>
-            <button class="question_mark_button" onclick="showAbilityDetailsOverlay('${abilityName}')">
+            <button aria-label="Show ability description" class="question_mark_button" onclick="showAbilityDetailsOverlay('${abilityName}')">
                 <img src="./assets/icons/question_mark.png" alt="A question mark.">
             </button>
             <div id="abilityDetailsOverlay_${abilityName}" class="ability_details_overlay ability_${abilityName}">
                 <header class="ability_details_overlay_header">
                     <h3>${abilityName}</h3>
-                    <button class="close_button" onclick="closeAbilityDetailsOverlay('${abilityName}')">
+                    <button aria-label="Close ability description" class="close_button" onclick="closeAbilityDetailsOverlay('${abilityName}')">
                         <img src="./assets/icons/close.svg" alt="A cross.">
                     </button>
                 </header>
