@@ -99,6 +99,14 @@
     height: 100%;
 }
 
+.previous_pokemon_button:active {
+    animation: popLeft 100ms;
+}
+
+.next_pokemon_button:active {
+    animation: popRight 100ms;
+}
+
 .base_infos_wrapper {
     display: flex;
     justify-content: space-between;
@@ -251,6 +259,26 @@
 
 .stats_wrapper>label {
     font-weight: bold;
+}
+
+@keyframes popRight {
+    from {
+        transform: translateX(0px);
+    }
+
+    to {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes popLeft {
+    from {
+        transform: translateX(0px);
+    }
+
+    to {
+        transform: translateX(-5px);
+    }
 }
 
 @media screen and (max-width: 550px) {
