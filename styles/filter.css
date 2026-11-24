@@ -1,0 +1,76 @@
+#emptyFilterButton {
+    display: none;
+}
+
+.filter_wrapper {
+    height: 40px;
+    width: 400px;
+    min-width: 0px;
+
+    background-color: white;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter_wrapper>input {
+    all: unset;
+
+    height: 100%;
+    min-width: 0px;
+
+    color: black;
+
+    flex: 1;
+}
+
+.filter_wrapper>button {
+    all: unset;
+
+    height: 20px;
+    width: 20px;
+
+    background-color: var(--pokemon-red);
+
+    padding: 4px;
+
+    border-radius: 8px;
+
+    display: flex;
+
+    cursor: pointer;
+}
+
+.filter_wrapper>button:hover,
+.filter_wrapper>button:focus-visible {
+    outline: 1px solid black;
+}
+
+.empty_filter_results {
+    width: 100%;
+    min-width: 0px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty_filter_results>img {
+    height: 250px;
+}
+
+.empty_filter_results>h2 {
+    margin-left: 25px;
+}
+
+@media screen and (max-width: 425px) {
+    .empty_filter_results>img {
+        height: 150px;
+    }
+}

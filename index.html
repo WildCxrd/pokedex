@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex</title>
+
+    <link rel="stylesheet" href="styles/standard.css">
+    <link rel="stylesheet" href="styles/variables.css">
+    <link rel="stylesheet" href="styles/fonts.css">
+    <link rel="stylesheet" href="styles/custom_elements.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/pokemon_card.css">
+    <link rel="stylesheet" href="styles/pokemon_types.css">
+    <link rel="stylesheet" href="styles/pokemon_details_dialog.css">
+    <link rel="stylesheet" href="styles/loader.css">
+    <link rel="stylesheet" href="styles/filter.css">
+
+
+    <link rel="shortcut icon" href="assets/icons/red-team.png" type="image/x-icon">
+
+    <script src="scripts/constants.js"></script>
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/init.js"></script>
+    <script src="scripts/pokeapi.js"></script>
+    <script src="scripts/templates.js"></script>
+    <script src="scripts/cache.js"></script>
+    <script src="scripts/render.js"></script>
+    <script src="scripts/filter.js"></script>
+    <script src="scripts/pokemon_details_dialog.js"></script>
+    <script src="scripts/loader.js"></script>
+    <script src="scripts/event_handler.js"></script>
+</head>
+
+<body onload="initializeAsync()">
+    <header class="page_header">
+        <div class="page_heading">
+            <a href="./index.html">
+                <img class="logo" src="assets/icons/red-team.png" alt="A pokéball inside three red arcs.">
+            </a>
+
+            <h1>Pokédex</h1>
+        </div>
+
+        <div class="filter_wrapper">
+            <input id="filterInput" data-id="search-input" aria-label="Search input" type="text" placeholder="Filter shown Pokémon..."
+                onkeypress="filterPokemonCardsOnEnterAsync(event)">
+            <button id="filterButton" data-id="search-button" aria-label="Search button" onclick="filterPokemonCardsAsync()">
+                <img src="assets/icons/magnifying-glass.svg" alt="A magnifying glass.">
+            </button>
+            <button id="emptyFilterButton" aria-label="Empty search input button" onclick="emptyFilterAsync()">
+                <img src="./assets/icons/close.svg" alt="A cross.">
+            </button>
+        </div>
+    </header>
+
+    <main data-id="content">
+        <section id="cardsSection" class="cards_section">
+            <div class="cards_section_content_wrapper">
+                <ul id="pokemonCardsList" class="cards_list">
+
+                </ul>
+
+                <div id="mainListLoader" class="loader">
+                    <img src="assets/icons/pokeball.svg" alt="A pokeball.">
+                </div>
+
+                <button id="loadPokemonButton" data-id="load-more-button" aria-label="Load more pokémon button" onclick="downloadAndRenderNextPokemon()">
+                    <p>Load next</p>
+                    <input id="loadPokemonInput" aria-label="Load pokémon amount input" type="number" value="20" min="1"
+                        onclick="loadPokemonInputClicked(event)" onkeypress="loadPokemonInputKeyPressed(event)">
+                    <p>Pokémon</p>
+                </button>
+            </div>
+
+            <div class="scroll_buttons_wrapper">
+                <a id="scrollToBottomLink" href="./index.html#pageFooter" class="scroll_to_bottom_link circle_button">
+                    <img src="./assets/icons/scroll_up.png" alt="An arrow pointing downwards.">
+                </a>
+
+
+                <a id="scrollToTopLink" href="./index.html#cardsSection" class="scroll_to_top_link circle_button">
+                    <img src="./assets/icons/scroll_up.png" alt="An arrow pointing upwards.">
+                </a>
+            </div>
+        </section>
+
+        <dialog id="pokemonDetailsLoaderDialog" data-id="dialog" aria-label="Loading dialog" class="loader_dialog" disabled closedby="none">
+            <img src="assets/icons/pokeball.svg" alt="A pokeball.">
+        </dialog>
+
+        <dialog id="pokemonDetailsDialog" data-id="dialog" aria-label="Pokémon details dialog" class="pokemon_details_dialog" closedby="any">
+            <button data-id="close-dialog-button" aria-label="Close dialog" class="close_button" onclick="closeDetailsDialog()">
+                <img src="./assets/icons/close.svg" alt="A cross.">
+            </button>
+
+            <div id="detailsDialogPokemonImageWrapper" class="details_dialog_pokemon_image_wrapper">
+                <button data-id="prev-button" aria-label="Switch to previous pokémon" class="circle_button previous_pokemon_button" onclick="showPreviousPokemonDetailsAsync()">
+                    <img src="./assets/icons/lower_than.png" alt="A lower-than symbol.">
+                </button>
+
+                <img id="detailsPokemonMainImage" data-id="dialog-image">
+
+                <button data-id="next-button" aria-label="Switch to next pokémon" class="circle_button next_pokemon_button" onclick="showNextPokemonDetailsAsync()">
+                    <img src="./assets/icons/greater_than.png" alt="A greater-than symbol.">
+                </button>
+            </div>
+
+            <div class="base_infos_wrapper">
+                <div data-id="overlay-pokemon-name" class="name_and_types_wrapper">
+                    <p id="detailsPokedexNumber"></p>
+                    <h2 id="detailsPokemonName"></h2>
+                    <div id="detailsPokemonTypesWrapper">
+                    </div>
+                </div>
+
+                <div class="pokemon_details gender_details">
+                    <button aria-label="Show official pokémon artwork" class="circle_button" onclick="showOfficialArtwork()">
+                        <img src="assets/icons/pokeball.svg" alt="A pokeball.">
+                    </button>
+                    <div id="pokemonGenderWrapper">
+                    </div>
+                </div>
+            </div>
+
+            <p id="pokemonFlavorText"></p>
+
+            <div class="details_and_stats_wrapper">
+                <div class="pokemon_details_wrapper">
+                    <div class="pokemon_details_wrapper_column column_left">
+                        <div class="pokemon_details">
+                            <p class="pokemon_details_headline">Height</p>
+                            <p id="pokemonHeight"></p>
+                        </div>
+                        <div class="pokemon_details">
+                            <p class="pokemon_details_headline">Weight</p>
+                            <p id="pokemonWeight"></p>
+                        </div>
+                    </div>
+                    <div class="pokemon_details_wrapper_column column_right">
+                        <div class="pokemon_details">
+                            <p class="pokemon_details_headline">Abilities</p>
+                            <div id="pokemonAbilitiesWrapper">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats_wrapper">
+                    <label for="pokemonStatsTable">Base stats</label>
+                    <table id="pokemonStatsTable">
+                    </table>
+                </div>
+            </div>
+
+        </dialog>
+
+        <footer id="pageFooter" class="page_footer">
+            <p>© 2026 Joshua Masur</p>
+            <p>Data provided by <a href="https://pokeapi.co/" target="_blank">PokéAPI</a></p>
+        </footer>
+    </main>
+</body>
+
+</html>

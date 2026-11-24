@@ -1,0 +1,39 @@
+.loader {
+    margin: auto;
+
+    display: none;
+}
+
+.loader.open {
+    display: flex;
+}
+
+.loader_dialog[open] {
+    background-color: unset;
+    border: unset;
+    outline: unset;
+    overflow: hidden;
+
+    margin: auto;
+
+    display: flex;
+}
+
+.loader>img,
+.loader_dialog>img {
+    height: 100px;
+    width: 100px;
+
+    transform-origin: center;
+    animation: rotate 1.5s ease infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

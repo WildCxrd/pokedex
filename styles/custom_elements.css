@@ -1,0 +1,74 @@
+.circle_button {
+    all: unset;
+
+    height: 30px;
+    width: 30px;
+
+    background-color: var(--pokemon-cream-white);
+
+    padding: 5px;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.circle_button>img {
+    height: 100%;
+}
+
+.circle_button:hover,
+.circle_button:focus-visible {
+    outline: 1px solid black;
+}
+
+.close_button {
+    all: unset;
+
+    height: 15px;
+    width: 15px;
+
+    background-color: black;
+
+    padding: 5px;
+
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-self: flex-end;
+
+    cursor: pointer;
+}
+
+.close_button:hover,
+.close_button:focus-visible {
+    background-color: darkgray;
+    outline: 1px solid black;
+}
+
+.circle_button:active,
+.close_button:active {
+    animation: pop3d 100ms;
+}
+
+@keyframes pop3d {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.2);
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .circle_button {
+        height: 20px;
+        width: 20px;
+    }
+}
