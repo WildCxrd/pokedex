@@ -126,30 +126,32 @@
 
             <p id="pokemonFlavorText"></p>
 
-            <div class="pokemon_details_wrapper">
-                <div class="pokemon_details_wrapper_column">
-                    <div class="pokemon_details">
-                        <p class="pokemon_details_headline">Height</p>
-                        <p id="pokemonHeight"></p>
+            <div class="details_and_stats_wrapper">
+                <div class="pokemon_details_wrapper">
+                    <div class="pokemon_details_wrapper_column column_left">
+                        <div class="pokemon_details">
+                            <p class="pokemon_details_headline">Height</p>
+                            <p id="pokemonHeight"></p>
+                        </div>
+                        <div class="pokemon_details">
+                            <p class="pokemon_details_headline">Weight</p>
+                            <p id="pokemonWeight"></p>
+                        </div>
                     </div>
-                    <div class="pokemon_details">
-                        <p class="pokemon_details_headline">Weight</p>
-                        <p id="pokemonWeight"></p>
-                    </div>
-                </div>
-                <div pokemon_details_wrapper_column>
-                    <div class="pokemon_details">
-                        <p class="pokemon_details_headline">Abilities</p>
-                        <div id="pokemonAbilitiesWrapper">
+                    <div class="pokemon_details_wrapper_column column_right">
+                        <div class="pokemon_details">
+                            <p class="pokemon_details_headline">Abilities</p>
+                            <div id="pokemonAbilitiesWrapper">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="stats_wrapper">
-                <label for="pokemonStatsTable">Base stats</label>
-                <table id="pokemonStatsTable">
-                </table>
+                <div class="stats_wrapper">
+                    <label for="pokemonStatsTable">Base stats</label>
+                    <table id="pokemonStatsTable">
+                    </table>
+                </div>
             </div>
 
         </dialog>
