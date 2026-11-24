@@ -96,7 +96,6 @@ a {
     padding: 2em max(10px, var(--content-limitation-calculation));
 
     display: flex;
-    /* align-items: center; */
     gap: 10px;
     flex: 1;
 }
@@ -115,8 +114,6 @@ a {
     width: 100%;
 
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
     gap: 2em;
 }
