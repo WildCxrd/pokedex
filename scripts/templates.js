@@ -1,10 +1,8 @@
 function getPokemonWithOneTypeCardTemplate(imgSrc, pokemonId, pokedexNumber, pokemonName, pokemonPrimaryTypeName, pokemonTypesTemplate) {
     return `
-        <article class="pokemon_card" onclick="showPokemonDetailsDialogAsync(${pokemonId})" tabindex=0>
+        <article data-id="card" class="pokemon_card" onclick="showPokemonDetailsDialogAsync(${pokemonId})" tabindex=0>
             <div class="pokemon_image_wrapper">
-           
-                <img id="pokemonImage" src="${imgSrc}" alt="The pokemon ${pokemonName}" class="type_${pokemonPrimaryTypeName}">
-      
+                <img id="pokemonImage" data-id="card-image" src="${imgSrc}" alt="The pokemon ${pokemonName}" class="type_${pokemonPrimaryTypeName}">
             </div>
             <p id="pokedexNumber">Nr. ${pokedexNumber}</p>
             <h2 id="pokemonName">${pokemonName}</h2>
@@ -39,7 +37,7 @@ function getPokemonTypeTemplate(pokemonType, pokemonTypeDisplayName) {
 
 function getEmptyFilterResultsTemplate() {
     return `
-        <div class="empty_filter_results">
+        <div data-id="not-found" class="empty_filter_results">
             <img src="./assets/img/prof_oak.png" alt="Prof. Oak holding a book.">
             <h2>Hey! Wait! There are no Pokémon in the tall grass...</h2>
         <div>
