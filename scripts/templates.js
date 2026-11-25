@@ -1,6 +1,6 @@
 function getPokemonWithOneTypeCardTemplate(imgSrc, pokemonId, pokedexNumber, pokemonName, pokemonPrimaryTypeName, pokemonTypesTemplate) {
     return `
-        <li data-id="card" class="pokemon_card" onclick="showPokemonDetailsDialogAsync(${pokemonId})" tabindex=0 role="button">
+        <li data-id="card" class="pokemon_card" onclick="showPokemonDetailsDialogAsync(${pokemonId})" onkeypress="showPokemonDetailsDialogOnKeyPressedAsync(event, ${pokemonId})" tabindex=0 role="button">
             <div class="pokemon_image_wrapper">
                 <img id="pokemonImage" data-id="card-image" src="${imgSrc}" alt="The pokemon ${pokemonName}" class="type_${pokemonPrimaryTypeName}">
             </div>
@@ -15,8 +15,7 @@ function getPokemonWithOneTypeCardTemplate(imgSrc, pokemonId, pokedexNumber, pok
 
 function getPokemonWithMultipleTypesCardTemplate(imgSrc, pokemonId, pokedexNumber, pokemonName, typesBackgroundGradient, pokemonTypesTemplate) {
     return `
-        <li class="pokemon_card" onclick="showPokemonDetailsDialogAsync(${pokemonId})" 
-                                      onkeypress="showPokemonDetailsDialogOnKeyPressedAsync(event, ${pokemonId})" tabindex=0 role="button">
+        <li class="pokemon_card" onclick="showPokemonDetailsDialogAsync(${pokemonId})" onkeypress="showPokemonDetailsDialogOnKeyPressedAsync(event, ${pokemonId})" tabindex=0 role="button">
             <div class="pokemon_image_wrapper">
                 <img id="pokemonImage" src="${imgSrc}" alt="The pokemon ${pokemonName}" style="background: ${typesBackgroundGradient}">
             </div>

@@ -20,6 +20,9 @@
 
     <link rel="shortcut icon" href="assets/icons/red-team.png" type="image/x-icon">
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
     <script src="scripts/constants.js"></script>
     <script src="scripts/utils.js"></script>
     <script src="scripts/init.js"></script>
@@ -44,9 +47,10 @@
         </div>
 
         <div class="filter_wrapper">
-            <input id="filterInput" data-id="search-input" aria-label="Search input" type="text" placeholder="Filter shown Pokémon..."
-                onkeypress="filterPokemonCardsOnEnterAsync(event)">
-            <button id="filterButton" data-id="search-button" aria-label="Search button" onclick="filterPokemonCardsAsync()">
+            <input id="filterInput" data-id="search-input" aria-label="Search input" type="text"
+                placeholder="Filter shown Pokémon..." onkeypress="filterPokemonCardsOnEnterAsync(event)">
+            <button id="filterButton" data-id="search-button" aria-label="Search button"
+                onclick="filterPokemonCardsAsync()">
                 <img src="assets/icons/magnifying-glass.svg" alt="A magnifying glass.">
             </button>
             <button id="emptyFilterButton" aria-label="Empty search input button" onclick="emptyFilterAsync()">
@@ -66,7 +70,8 @@
                     <img src="assets/icons/pokeball.svg" alt="A pokeball.">
                 </div>
 
-                <button id="loadPokemonButton" data-id="load-more-button" aria-label="Load more pokémon button" onclick="downloadAndRenderNextPokemon()">
+                <button id="loadPokemonButton" data-id="load-more-button" aria-label="Load more pokémon button"
+                    onclick="downloadAndRenderNextPokemon()">
                     <p>Load next</p>
                     <input id="loadPokemonInput" aria-label="Load pokémon amount input" type="number" value="20" min="1"
                         onclick="loadPokemonInputClicked(event)" onkeypress="loadPokemonInputKeyPressed(event)">
@@ -86,23 +91,28 @@
             </div>
         </section>
 
-        <dialog id="pokemonDetailsLoaderDialog" data-id="dialog" aria-label="Loading dialog" class="loader_dialog" disabled closedby="none">
+        <dialog id="pokemonDetailsLoaderDialog" data-id="dialog" aria-label="Loading dialog" class="loader_dialog"
+            disabled closedby="none">
             <img src="assets/icons/pokeball.svg" alt="A pokeball.">
         </dialog>
 
-        <dialog id="pokemonDetailsDialog" data-id="dialog" aria-label="Pokémon details dialog" class="pokemon_details_dialog" closedby="any">
-            <button data-id="close-dialog-button" aria-label="Close dialog" class="close_button" onclick="closeDetailsDialog()">
+        <dialog id="pokemonDetailsDialog" data-id="dialog" aria-label="Pokémon details dialog"
+            class="pokemon_details_dialog" closedby="any">
+            <button data-id="close-dialog-button" aria-label="Close dialog" class="close_button"
+                onclick="closeDetailsDialog()">
                 <img src="./assets/icons/close.svg" alt="A cross.">
             </button>
 
             <div id="detailsDialogPokemonImageWrapper" class="details_dialog_pokemon_image_wrapper">
-                <button data-id="prev-button" aria-label="Switch to previous pokémon" class="circle_button previous_pokemon_button" onclick="showPreviousPokemonDetailsAsync()">
+                <button data-id="prev-button" aria-label="Switch to previous pokémon"
+                    class="circle_button previous_pokemon_button" onclick="showPreviousPokemonDetailsAsync()">
                     <img src="./assets/icons/lower_than.png" alt="A lower-than symbol.">
                 </button>
 
                 <img id="detailsPokemonMainImage" data-id="dialog-image">
 
-                <button data-id="next-button" aria-label="Switch to next pokémon" class="circle_button next_pokemon_button" onclick="showNextPokemonDetailsAsync()">
+                <button data-id="next-button" aria-label="Switch to next pokémon"
+                    class="circle_button next_pokemon_button" onclick="showNextPokemonDetailsAsync()">
                     <img src="./assets/icons/greater_than.png" alt="A greater-than symbol.">
                 </button>
             </div>
@@ -116,7 +126,8 @@
                 </div>
 
                 <div class="pokemon_details gender_details">
-                    <button aria-label="Show official pokémon artwork" class="circle_button" onclick="showOfficialArtwork()">
+                    <button aria-label="Show official pokémon artwork" class="circle_button"
+                        onclick="showOfficialArtwork()">
                         <img src="assets/icons/pokeball.svg" alt="A pokeball.">
                     </button>
                     <div id="pokemonGenderWrapper">
@@ -126,32 +137,29 @@
 
             <p id="pokemonFlavorText"></p>
 
-            <div class="details_and_stats_wrapper">
-                <div class="pokemon_details_wrapper">
-                    <div class="pokemon_details_wrapper_column column_left">
-                        <div class="pokemon_details">
-                            <p class="pokemon_details_headline">Height</p>
-                            <p id="pokemonHeight"></p>
-                        </div>
-                        <div class="pokemon_details">
-                            <p class="pokemon_details_headline">Weight</p>
-                            <p id="pokemonWeight"></p>
-                        </div>
+            <div class="pokemon_details_wrapper">
+                <div class="pokemon_details_wrapper_column column_left">
+                    <div class="pokemon_details">
+                        <p class="pokemon_details_headline">Height</p>
+                        <p id="pokemonHeight"></p>
                     </div>
-                    <div class="pokemon_details_wrapper_column column_right">
-                        <div class="pokemon_details">
-                            <p class="pokemon_details_headline">Abilities</p>
-                            <div id="pokemonAbilitiesWrapper">
-                            </div>
+                    <div class="pokemon_details">
+                        <p class="pokemon_details_headline">Weight</p>
+                        <p id="pokemonWeight"></p>
+                    </div>
+                </div>
+                <div class="pokemon_details_wrapper_column column_right">
+                    <div class="pokemon_details">
+                        <p class="pokemon_details_headline">Abilities</p>
+                        <div id="pokemonAbilitiesWrapper">
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="stats_wrapper">
-                    <label for="pokemonStatsTable">Base stats</label>
-                    <table id="pokemonStatsTable">
-                    </table>
-                </div>
+            <div class="stats_wrapper">
+                <canvas id="pokemonStatsCanvas">
+                </canvas>
             </div>
 
         </dialog>

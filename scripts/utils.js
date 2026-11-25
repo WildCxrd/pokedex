@@ -174,6 +174,24 @@ function cleanText(text) {
     return cleanedText;
 }
 
+function cleanStatName(statName) {
+    const upperCaseStatName = statName.charAt(0).toUpperCase() + statName.slice(1);
+    return upperCaseStatName.replace("-", " ");
+}
+
+function getShortenedStatName(statName) {
+    switch (statName) {
+        case "hp":
+            return "HP";
+        case "special-attack":
+            return "Sp. Atk.";
+        case "special-defense":
+            return "Sp. Def.";
+        default:
+            return cleanStatName(statName);
+    }
+}
+
 async function preloadImagesAsync(...imageUrls) {
     const imageDownloads = [];
 
