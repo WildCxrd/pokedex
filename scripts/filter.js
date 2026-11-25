@@ -1,16 +1,21 @@
+const FILTER_INPUT_MIN_LENGTH = 3;
+let isFiltered = false;
+
 async function filterPokemonCardsAsync() {
     const filterInput = document.getElementById("filterInput");
     const filterInputTrimmedValue = filterInput.value.trim();
 
-    if (filterInputTrimmedValue != "") {
+    if (filterInputTrimmedValue.length >= FILTER_INPUT_MIN_LENGTH) {
         const filteredPokemon = filterPokemon(POKEMON_CACHE, filterInputTrimmedValue);
         await renderPokemonCardsAsync(filteredPokemon);
         setLoadPokemonButtonDisplay("none");
         setEmptyFilterButtonsDisplay(true);
-    } else {
+        isFiltered = true;
+    } else if (isFiltered) {
         emptyCardsWrapper();
         await renderPokemonCardsFromCacheAsync();
         setEmptyFilterButtonsDisplay(false);
+        isFiltered = false;
     }
 }
 
