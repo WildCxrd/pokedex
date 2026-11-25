@@ -1,6 +1,7 @@
 const STATS_CHART_TEXT_COLOR = 'rgb(1, 1, 1)';
 const STATS_CHART_CONFIG = {
     type: 'bar',
+    plugins: [ChartDataLabels],
     data: {
         datasets: [{
             borderRadius: 20,
@@ -21,7 +22,6 @@ const STATS_CHART_CONFIG = {
                 },
                 ticks: {
                     color: STATS_CHART_TEXT_COLOR,
-                    mirror: true,
                     font: {
                         weight: "bold"
                     },
@@ -31,6 +31,11 @@ const STATS_CHART_CONFIG = {
         },
         maintainAspectRatio: false,
         plugins: {
+            datalabels: {
+                align: 'end',
+                anchor: 'start',
+                color: STATS_CHART_TEXT_COLOR
+            },
             title: {
                 color: STATS_CHART_TEXT_COLOR,
                 display: true,
@@ -170,7 +175,7 @@ function initializeStatsChart() {
 function updateStatsChart(statLabels, statBaseValues) {
     statsChart.data.labels = statLabels;
     statsChart.data.datasets[0].data = statBaseValues;
-    statsChart.options.scales['y'].ticks.callback = (index) => `${statLabels[index]}: ${statBaseValues[index]}`;
+    statsChart.options.scales['y'].ticks.callback = (index) => `${statLabels[index]}`;
     statsChart.update();
 }
 
