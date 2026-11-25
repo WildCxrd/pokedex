@@ -1,4 +1,50 @@
+const STATS_CHART_TEXT_COLOR = 'rgb(1, 1, 1)';
+const STATS_CHART_CONFIG = {
+    type: 'bar',
+    data: {
+        datasets: [{
+            borderRadius: 20,
+            label: 'Stat value'
+        }]
+    },
+    options: {
+        indexAxis: 'y',
+        scales: {
+            x: {
+                grid: {
+                    display: false
+                }
+            },
+            y: {
+                grid: {
+                    display: false
+                },
+                ticks: {
+                    color: STATS_CHART_TEXT_COLOR,
+                    mirror: true,
+                    font: {
+                        weight: "bold"
+                    },
+                    z: 1
+                }
+            }
+        },
+        maintainAspectRatio: false,
+        plugins: {
+            title: {
+                color: STATS_CHART_TEXT_COLOR,
+                display: true,
+                text: "Base stats"
+            },
+            legend: {
+                display: false
+            }
+        }
+    }
+};
+
 let currentPokemon;
+let statsChart;
 
 async function showPokemonDetailsDialogAsync(pokemonId) {
     const pokemonDetailsDialog = document.getElementById("pokemonDetailsDialog");
@@ -99,9 +145,33 @@ function setPokemonDetails(pokemon, pokemonGenderTemplates, pokemonAbilitiesTemp
 }
 
 function setPokemonStats(pokemon) {
-    const pokemonStatsTable = document.getElementById("pokemonStatsTable");
-    const statsTemplates = getPokemonStatsTemplates(pokemon.stats);
-    pokemonStatsTable.innerHTML = statsTemplates;
+    const statLabels = [];
+    const statBaseValues = [];
+
+    for (const stat of pokemon.stats) {
+        statLabels.push(cleanStatName(stat.stat.name));
+        statBaseValues.push(stat.base_stat);
+    }
+
+    if (statsChart == null) {
+        initializeStatsChart();
+    }
+
+    updateStatsChart(statLabels, statBaseValues);
+}
+
+function initializeStatsChart() {
+    statsChart = new Chart(
+        document.getElementById("pokemonStatsCanvas"),
+        STATS_CHART_CONFIG
+    );
+}
+
+function updateStatsChart(statLabels, statBaseValues) {
+    statsChart.data.labels = statLabels;
+    statsChart.data.datasets[0].data = statBaseValues;
+    statsChart.options.scales['y'].ticks.callback = (index) => `${statLabels[index]}: ${statBaseValues[index]}`;
+    statsChart.update();
 }
 
 function showAbilityDetailsOverlay(abilityName) {

@@ -174,6 +174,11 @@ function cleanText(text) {
     return cleanedText;
 }
 
+function cleanStatName(statName) {
+    const upperCaseStatName = statName.charAt(0).toUpperCase() + statName.slice(1);
+    return upperCaseStatName.replace("-", " ");
+}
+
 async function preloadImagesAsync(...imageUrls) {
     const imageDownloads = [];
 
