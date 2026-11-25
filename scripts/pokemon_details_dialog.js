@@ -154,7 +154,7 @@ function setPokemonStats(pokemon) {
     const statBaseValues = [];
 
     for (const stat of pokemon.stats) {
-        statLabels.push(cleanStatName(stat.stat.name));
+        statLabels.push(getShortenedStatName(stat.stat.name));
         statBaseValues.push(stat.base_stat);
     }
 

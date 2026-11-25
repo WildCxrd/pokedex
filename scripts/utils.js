@@ -179,6 +179,19 @@ function cleanStatName(statName) {
     return upperCaseStatName.replace("-", " ");
 }
 
+function getShortenedStatName(statName) {
+    switch (statName) {
+        case "hp":
+            return "HP";
+        case "special-attack":
+            return "Sp. Atk.";
+        case "special-defense":
+            return "Sp. Def.";
+        default:
+            return cleanStatName(statName);
+    }
+}
+
 async function preloadImagesAsync(...imageUrls) {
     const imageDownloads = [];
 
