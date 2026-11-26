@@ -1,0 +1,39 @@
+main,
+.pokemon_details_dialog {
+    --sb-track-color: #232E33;
+    --sb-thumb-color: var(--pokemon-red);
+    --sb-size: 10px;
+}
+
+main::-webkit-scrollbar,
+.pokemon_details_dialog::-webkit-scrollbar {
+    width: var(--sb-size)
+}
+
+main::-webkit-scrollbar-track,
+.pokemon_details_dialog::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+}
+
+.pokemon_details_dialog::-webkit-scrollbar-track {
+    border-radius: 5px;
+    margin: 10px;
+}
+
+main::-webkit-scrollbar-thumb,
+.pokemon_details_dialog::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+
+}
+
+.pokemon_details_dialog::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+
+    main,
+    .pokemon_details_dialog {
+        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+    }
+}

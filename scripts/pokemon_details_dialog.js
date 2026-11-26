@@ -55,16 +55,19 @@ async function showPokemonDetailsDialogAsync(pokemonId) {
     const pokemonDetailsDialog = document.getElementById("pokemonDetailsDialog");
     await setPokemonDetailsDialogViewAsync(pokemonId);
     pokemonDetailsDialog.showModal();
+    setPokemonStatsChart(currentPokemon);
 }
 
 async function showPreviousPokemonDetailsAsync() {
     const previousPokemonId = getPreviousPokemonInCache(currentPokemon.id).id;
     await setPokemonDetailsDialogViewAsync(previousPokemonId);
+    setPokemonStatsChart(currentPokemon);
 }
 
 async function showNextPokemonDetailsAsync() {
     const nextPokemonId = getNextPokemonInCache(currentPokemon.id).id;
     await setPokemonDetailsDialogViewAsync(nextPokemonId);
+    setPokemonStatsChart(currentPokemon);
 }
 
 function closeDetailsDialog() {
@@ -89,7 +92,6 @@ async function setPokemonDetailsDialogViewAsync(pokemonId) {
     setPokemonDetailsTexts(formattedPokedexNumber, currentPokemon.name, formattedPokemonFlavorText);
     setPokemonDetailsTypes(currentPokemon);
     setPokemonDetails(currentPokemon, pokemonGenderTemplates, pokemonAbilitiesTemplates);
-    setPokemonStats(currentPokemon);
 
     closePokemonDetailsLoaderDialog();
 }
@@ -149,7 +151,7 @@ function setPokemonDetails(pokemon, pokemonGenderTemplates, pokemonAbilitiesTemp
     pokemonAbilitiesWrapper.innerHTML = pokemonAbilitiesTemplates;
 }
 
-function setPokemonStats(pokemon) {
+function setPokemonStatsChart(pokemon) {
     const statLabels = [];
     const statBaseValues = [];
 
