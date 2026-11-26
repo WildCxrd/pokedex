@@ -15,6 +15,6 @@ async function downloadInitialDataAsync() {
     dataDownloads.push(downloadPokemonGenderAsync(MALE_GENDER_VALUE));
     dataDownloads.push(downloadPokemonGenderAsync(GENDERLESS_GENDER_VALUE));
     dataDownloads.push(downloadPokemonRangeAsync(0, 20));
-    dataDownloads.push(preloadImagesAsync("../assets/img/prof_oak.png"));
+    dataDownloads.push(preloadImagesAsync("./assets/img/prof_oak.png"));
     return await Promise.all(dataDownloads);
 }
